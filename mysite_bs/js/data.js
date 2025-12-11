@@ -12,20 +12,20 @@ const datas = [
   {
     rank: 2,
     poster: "https://www.dummyimage.com/300x400/000/fff&text=preparing+...",
-    title: '???',
-    description: ["준비중 ..."],
-    worktime: '240h',
-    task: 'PE',
-    siteUrl: '#'
-  },
-  {
-    rank: 3,
-    poster: "https://www.dummyimage.com/300x400/000/fff&text=preparing+...",
     title: '팀 작업',
     description: ["준비중 ..."],
     worktime: '240h',
     task: 'TE',
     siteUrl: '#'
+  },
+  {
+    rank: 3,
+    poster: "assets/img/project3_thumb.png",
+    title: '메가박스',
+    description: ["준비중 ..."],
+    worktime: '16h',
+    task: 'PE',
+    siteUrl: 'https://https://megabox202512.netlify.app/'
   },
   {
     rank: 4,
