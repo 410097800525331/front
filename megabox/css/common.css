@@ -38,7 +38,7 @@ address {font-style: normal;}
   padding: 15px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
-#header.active::before {
+#header.active .sub_bar {
   content: '';
   position: absolute;
   left: 0; top: 98px;

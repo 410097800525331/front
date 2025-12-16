@@ -21,7 +21,10 @@
   line-height: 42px;
   background: #F8F8FA;
 }
-
+.page_util .inner {
+  width: 1100px;
+  margin: 0 auto;
+}
 .page_util a,
 i {
   color: #777;

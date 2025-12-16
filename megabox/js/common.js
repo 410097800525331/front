@@ -3,6 +3,7 @@
 $('.main li:not(:nth-of-type(5)').mouseenter((e) => {
   $('#header').addClass('active');
 });
+// $('#header .sub_Bar').mouseleave(() => {
 $('.main li').mouseleave(() => {
   $('#header').removeClass('active');
 });
