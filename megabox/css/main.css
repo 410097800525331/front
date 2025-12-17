@@ -1,12 +1,8 @@
 @charset "utf-8";
 @import url(common.css);
 
-#header.active .sub_bar {
-  position: absolute;
-  left: 0; top: 98px;
-  width: 100%; height: 48px;
-  background: #339EB2;
-  /* background: rgb(0, 0, 0, 0.5); */
+#header::after {
+  background: rgb(0, 0, 0, 0.5);
 }
 
 /* 메인 메뉴 호버시 하단의 바 */
@@ -20,7 +16,7 @@
   position: absolute;
   width: 100%;
   height: 100vh;
-  background: url(/img/main/NaJBHY231NCNNthdR4tdUUJHpWmlX9oR_380.jpg) no-repeat -100px -60px/cover;
+  background: url(//img/main/NaJBHY231NCNNthdR4tdUUJHpWmlX9oR_380.jpg) no-repeat -100px -60px/cover;
   filter: brightness(15%) blur(10px);
 }
 
@@ -36,7 +32,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background: url(/img/main/NaJBHY231NCNNthdR4tdUUJHpWmlX9oR_380.jpg) no-repeat 0 -150px/cover;
+    background: url(//img/main/NaJBHY231NCNNthdR4tdUUJHpWmlX9oR_380.jpg) no-repeat 0 -150px/cover;
     filter: brightness(10%) blur(10px);
 } */
 .ibox {
@@ -110,7 +106,7 @@ h2 {
   right: 0px;
   width: 18px;
   height: 18px;
-  background: url(../img/ico-search-white.png) no-repeat;
+  background: url(..//img/ico-search-white.png) no-repeat;
 }
 
 .link .search input::placeholder {

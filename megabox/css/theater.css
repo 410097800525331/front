@@ -21,10 +21,7 @@
   line-height: 42px;
   background: #F8F8FA;
 }
-.page_util .inner {
-  width: 1100px;
-  margin: 0 auto;
-}
+
 .page_util a,
 i {
   color: #777;
@@ -47,10 +44,6 @@ i {
   background: #fff;
   color: #fff;
   padding-bottom: 150px;
-}
-#section .inner {
-  max-width: 1100px;
-  margin: 0 auto;
 }
 
 #section h2 {
@@ -109,52 +102,52 @@ i {
 
 /* 배경 이미지 */
 .special:nth-of-type(1) div:nth-of-type(4) {
-  background-image: url(/img/specialtheater/bg_LED.png);
+  background-image: url(..//img/specialtheater/bg_LED.png);
 }
 
 .special:nth-of-type(1) div:nth-of-type(5) {
-  background-image: url(/img/specialtheater/bg_dolby_atmos.png);
+  background-image: url(..//img/specialtheater/bg_dolby_atmos.png);
 }
 
 .special:nth-of-type(2) div:nth-of-type(3) {
-  background-image: url(/img/specialtheater/bg_boutique.png);
+  background-image: url(..//img/specialtheater/bg_boutique.png);
 }
 
 .special:nth-of-type(3) div:nth-of-type(1) {
-  background-image: url(/img/specialtheater/bg_recliner.png);
+  background-image: url(..//img/specialtheater/bg_recliner.png);
 }
 
 .special:nth-of-type(3) div:nth-of-type(2) {
-  background-image: url(/img/specialtheater/bg_comfort.png);
+  background-image: url(..//img/specialtheater/bg_comfort.png);
 }
 
 /* 그리드 아이템 크기 */
 .special:nth-of-type(1) div:nth-of-type(1) {
   grid-column: 2 / span 2;
   grid-row: 1 / span 1;
-  background-image: url(/img/specialtheater/bg_dolbycinema.png);
+  background-image: url(..//img/specialtheater/bg_dolbycinema.png);
 }
 
 .special:nth-of-type(1) div:nth-of-type(2) {
   grid-column: 1 / span 2;
   grid-row: 2 / span 1;
-  background-image: url(/img/specialtheater/bg_dolbyvision.png);
+  background-image: url(..//img/specialtheater/bg_dolbyvision.png);
 }
 
 .special:nth-of-type(1) div:nth-of-type(3) {
   grid-column: 3 / span 1;
   grid-row: 2 / span 2;
-  background: #333 url(/img/specialtheater/bg_MX4D.png);
+  background: #333 url(..//img/specialtheater/bg_MX4D.png);
 }
 
 .special:nth-of-type(2) div:nth-of-type(1) {
   grid-column: 2 / span 2;
-  background-image: url(/img/specialtheater/bg_boutique_private.png);
+  background-image: url(..//img/specialtheater/bg_boutique_private.png);
 }
 
 .special:nth-of-type(2) div:nth-of-type(2) {
   grid-column: 1 / span 2;
-  background-image: url(/img/specialtheater/bg_suite.png);
+  background-image: url(..//img/specialtheater/bg_suite.png);
 }
 
 .tothetop {

@@ -3,11 +3,11 @@ const formatCount = (num) => num >= 1000 ? (num / 1000).toFixed(1) + "k" : num;
 
 // Movie Card UI
 $(datas).each((idx, data) => {
-  const screenImgs = data.screenTypes
-    .map((ele) => `<img src="${ele}" alt="Screen Types">`)
-    .join("");
+    const screenImgs = data.screenTypes
+        .map((ele) => `<img src="${ele}" alt="Screen Types">`)
+        .join("");
 
-  const card = `<div class="box_office_card">
+    const card = `<div class="box_office_card">
             <div class="inner">
                 <div class="front">
                     <span class="rank">${data.rank}</span>
@@ -31,5 +31,5 @@ $(datas).each((idx, data) => {
             </div>
         </div>`;
 
-  $(".box_office").append(card);
+    $(".box_office").append(card);
 }); // each()

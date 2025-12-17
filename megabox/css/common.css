@@ -1,72 +1,126 @@
-@charset 'utf-8';
+@charset "utf-8";
+/* reset(초기화) */
+/* 폰트어썸 라이브러리 */
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css);
 
-/* ################ reast ################ */
+/* 웹 폰트 */
 @font-face {
-font-family: 'NanumBarunGothic';
-src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
-font-weight: 400;
-font-display: swap;
+  font-family: "NanumBarunGothic";
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot");
+  font-weight: 400;
+  font-display: swap;
 }
-@font-face {
-    font-family: 'NanumBarunGothic';
-    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot');
-    font-weight: 700;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'NanumBarunGothic';
-    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot');
-    font-weight: 300;
-    font-display: swap;
-}
-:root {scroll-behavior: smooth;}
-* {box-sizing: border-box;}
-body, h1, ul {margin: 0; padding: 0;}
-ul {list-style: none;}
-body {font: 0.9375rem/1.6 'NanumBarunGothic', sans-serif; background: #111;}
-a {text-decoration: none; color: #fff;}
-img {vertical-align: middle; width: 100%; height: 100%; object-fit: cover;}
-input {background: transparent; border: none; outline: none; color: #fff;}
-::placeholder {color: #fff; font-size: 1rem;}
-address {font-style: normal;}
 
-/* ################ header ################ */
+@font-face {
+  font-family: "NanumBarunGothic";
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NanumBarunGothic";
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot");
+  font-weight: 300;
+  font-display: swap;
+}
+
+/* 초기화 */
+* {
+  box-sizing: border-box;
+}
+:root {
+  scroll-behavior: smooth;
+}
+
+body,
+h1,
+h2,
+h3,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+/* https://sitero.co.kr/fontsize */
+body {
+  font: 0.9375rem/1.6 "NanumBarunGothic", sans-serif;
+  background: #111;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+img {
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+input {
+  background: transparent;
+  border: none;
+  /* input이 focus를 가질 경우 생기는 테두리 */
+  outline: none;
+  color: #fff;
+}
+::placeholder {
+  color: #fff;
+  font-size: 1rem;
+}
+address {
+  font-style: normal;
+}
+
+/* header(헤더) */
 #header {
   position: relative;
   background: #111;
   padding: 15px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
-#header.active .sub_bar {
-  content: '';
+#header.active .subbar {
   position: absolute;
-  left: 0; top: 98px;
-  width: 100%; height: 48px;
+  width: 100%;
+  height: 48px;
+  left: 0;
+  top: 98px;
   background: #339EB2;
 }
-#header .inner {
+
+.inner {
   max-width: 1100px;
   margin: 0 auto;
 }
-/* logo */
+
+/* logo(로고) */
 #logo {
+  z-index: 9999;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
 /* top menu */
 #header .top_link {
   display: grid;
   grid-template-columns: auto auto;
   justify-content: space-between;
 }
+
 #header .top_link a {
   font-size: 0.8125rem;
   color: #888;
   margin: 0 10px;
 }
+
 /* link icon */
 #header .link_icon {
   display: grid;
@@ -75,11 +129,13 @@ address {font-style: normal;}
   justify-content: space-between;
   margin-top: 8px;
 }
+
 #header .link_icon a {
   display: inline-block;
   margin: 0 10px;
 }
-/* GNB */
+
+/* GNB(글로벌 내비게이션 바) */
 #gnb {
   position: absolute;
   width: 100%;
@@ -89,36 +145,41 @@ address {font-style: normal;}
   transform: translateX(-50%);
   /* margin: 0 auto; */
 }
+
 /* 1depth */
 #gnb .main {
   display: grid;
   grid-template-columns: repeat(6, auto);
   justify-content: space-evenly;
 }
+
 #gnb .main a {
   position: relative;
   font-size: 1.125rem;
 }
-#gnb .main > li:nth-of-type(1) {
+
+#gnb .main>li:nth-of-type(1) {
   margin-left: 30px;
 }
-#gnb .main > li:nth-of-type(4) {
+
+#gnb .main>li:nth-of-type(4) {
   margin-left: 300px;
 }
-#gnb .main > li:hover .sub {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-}
+/* #gnb .main > li:hover .sub {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+} */
 /* 메인 메뉴 호버시 하단의 바 */
-#gnb .main > li:not(:nth-of-type(5)) > a:hover::after {
+#gnb .main>li:not(:nth-of-type(5)):hover>a::after {
   position: absolute;
-  bottom: -14px;
+  bottom: -22px;
   transform: translateX(-100%);
   content: "";
   width: 100%;
   height: 3px;
   background: #339EB2;
 }
+
 /* 2depth */
 #gnb .sub {
   position: absolute;
@@ -128,19 +189,22 @@ address {font-style: normal;}
   /* 마지막 메뉴(혜택 메뉴)의 영역이 부족하여 줄 바꿈되는 현상 제거 */
   text-wrap: nowrap;
 }
-#gnb .sub li {
-  padding: 0 8px;
+#gnb .sub.active {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
 }
 #gnb .sub a {
+  display: block;
   font-size: 0.9375rem;
+  padding: 0 8px;
 }
 #gnb .sub a:hover {
   text-decoration: underline;
 }
 
-/* ################ footer ################ */
+/* footer(푸터) */
 #footer {
-  background: #F8F8FA;
+  background: #f8f8fa;
   font-size: 0.813rem;
   padding-bottom: 50px;
 }
@@ -156,7 +220,6 @@ address {font-style: normal;}
   display: grid;
   grid-template-columns: repeat(2, auto);
   justify-content: space-between;
-  align-items: center;
   padding: 30px 0;
 }
 .fnb {
@@ -176,9 +239,6 @@ address {font-style: normal;}
   width: 15px;
   height: 15px;
   margin-right: 4px;
-}
-.btn_looking_theater.active {
-  border: 1px dashed #555;
 }
 /* 하단 영역 */
 .footer_bottom {
@@ -201,15 +261,18 @@ address {font-style: normal;}
 .sns a:not(:last-of-type) {
   margin-right: 4px;
 }
+
 /* 극장 찾기 */
 .theater {
   position: absolute;
-  left: 0; top: 215px;
-  width: 100%; height: calc(100vh - 200px);
+  left: 0;
+  top: 250px;
+  width: 100%;
+  height: calc(100vh - 200px);
   color: #fff;
-  background: #333;
-  padding: 20px 0;
   display: none;
+  background: #333;
+  padding: 20px;
 }
 .theater.active {
   display: block;
@@ -222,37 +285,12 @@ address {font-style: normal;}
 }
 .theater h2 {
   font-weight: normal;
+  font-size: 1.375rem;
+  border: none;
 }
 .closed {
   display: inline-block;
   width: 36px;
   height: 36px;
   cursor: pointer;
-}
-.cont {
-  border: 1px solid rgba(255, 255, 255, .1);
-  padding: 8px 0;
-}
-.cont>ul>li {
-  display: flex;
-  align-items: center;
-  padding: 8px 0;
-}
-.cont>ul h2 {
-  font-size: 0.935rem;
-  width: 120px;
-  margin-left: 20px;
-}
-.cont_inner {
-  display: flex;
-  flex-wrap: wrap;
-  width: 80%;
-  margin-left: 30px;
-  font-size: 0.92rem;
-}
-.cont_inner li {
-  margin: 2px 8px;
-}
-.cont_inner a {
-  color: #ccc;
 }
