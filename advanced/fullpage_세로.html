@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>서브웨이</title>
+  <style>
+    /* 초기화 */
+    html,
+    body,
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+
+    /* 풀페이지 */
+    .wrap {
+      width: 100%;
+    }
+
+    .page {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 50px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .page1 {
+      background: #ff6b6b;
+    }
+
+    .page2 {
+      background: #4d96ff;
+    }
+
+    .page3 {
+      background: #6bcf63;
+    }
+
+    .page4 {
+      background: #ffc93c;
+    }
+
+    .footer {
+      height: 300px;
+      background: #222;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 오른쪽 인디케이터(페이저) */
+    .pager {
+      position: fixed;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+    }
+
+    .pager li {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      margin: 16px 0;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .pager li.active {
+      background: #fff;
+      transform: scale(1.4);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <section class="page page1">Page 1</section>
+    <section class="page page2">Page 2</section>
+    <section class="page page3">Page 3</section>
+    <section class="page page4">Page 4</section>
+    <footer class="footer">Footer 영역 (300px)</footer>
+  </div>
+  <!-- 페이저 -->
+  <ul class="pager">
+  </ul>
+
+  <script>
+    // 휠 이벤트는 한 번에 여러 번 연속 발생
+    // isScrolling 플래그로 애니메이션 중에는 추가 휠 입력 무시
+    let isScrolling = false;
+
+    const pages = document.querySelectorAll(".page");
+    const pager = document.querySelector(".pager");
+    // index: 0, 1, 2, 3
+    const lastPageIndex = pages.length - 1; // 3
+    console.log("pages: " + pages);
+
+    // 페이저 생성
+    /*  배열.forEach((요소, 인덱스) => {
+        // 실행 코드
+        });
+    */
+    pages.forEach((ele, index) => {
+      const dot = document.createElement("li");
+      if (index === 0) dot.classList.add("active");
+
+      // 페이저 클릭 시 페이지 이동
+      dot.addEventListener("click", () => {
+        if (isScrolling) return;
+        isScrolling = true;
+        moveTo(index);
+        setTimeout(() => isScrolling = false, 600);
+      });
+
+      pager.appendChild(dot);
+    });
+
+    const pagerDots = document.querySelectorAll(".pager li");
+
+    // 현재 페이지의 Pager에 active 클래스 추가
+    function setActivePager(index) {
+      pagerDots.forEach(dot => dot.classList.remove("active"));
+      // ?.은 옵셔널 체이닝 연산자
+      // ?.의 앞의 값이 null 또는 undefined일 경우 에러를 발생시키지 않고 종료
+      pagerDots[index]?.classList.add("active");
+    }
+
+    function moveTo(pageIndex) {
+      // window.scrollTo()
+      window.scrollTo({
+        top: pageIndex * window.innerHeight,
+        behavior: "smooth"
+      });
+      setActivePager(pageIndex);
+    }
+
+    // click: 클릭 이벤트
+    // wheel: 휠 이벤트
+    // scroll: 스크롤 이벤트
+    window.addEventListener("wheel", (e) => {
+      // window.scrollY는 현재 문서가 세로 방향으로 얼마나
+      // 스크롤되었는지(px 단위)를 나타내는 읽기 전용 속성
+      const scrollTop = window.scrollY;
+      // window.innerHeight는 브라우저 뷰포트(Viewport)의 실제 높이(px)
+      const lastPageTop = lastPageIndex * window.innerHeight;
+
+      /* footer 영역 */
+      if (scrollTop > lastPageTop) {
+        // e.deltaY는 마우스 휠 또는 터치패드 스크롤 시
+        // 세로 방향으로 얼마나 움직였는지를 나타내는 값
+        // 양수면 아래로, 음수면 위로
+        if (e.deltaY < 0) {
+          // e.preventDefault(): 기본 이벤트(예, wheel) 방지
+          e.preventDefault();
+          moveTo(lastPageIndex);
+        }
+        return;
+      }
+
+      /* 마지막 페이지 */
+      if (scrollTop === lastPageTop) {
+        if (e.deltaY > 0) return;
+
+        e.preventDefault();
+        moveTo(lastPageIndex - 1);
+        return;
+      }
+
+      /* 일반 풀페이지 */
+      e.preventDefault();
+      // isScrolling = true이면 wheel 이벤트 함수 종료
+      if (isScrolling) return;
+      isScrolling = true;
+
+      // 현재 위치 기준으로 페이지 계산
+      // Math.round(숫자) - 숫자를 가장 가까운 정수로 반올림
+      // 주의! Math.round(-1.5) -> -1
+      // 주의! Math.round(-1.6) -> -2
+      let currentPage = Math.round(scrollTop / window.innerHeight);
+      currentPage += e.deltaY > 0 ? 1 : -1;
+      // Math.max(숫자1, 숫자2, ...) - 숫자 중 큰값 반환
+      // Math.min(숫자1, 숫자2, ...) - 숫자 중 작은값 반환
+      currentPage = Math.max(0, Math.min(currentPage, lastPageIndex));
+
+      moveTo(currentPage);
+
+      setTimeout(() => isScrolling = false, 600);
+      // 브라우저는 스크롤 관련 이벤트의 성능을 높이기 위해
+      // wheel, touchstart, touchmove 이벤트를 기본적으로 passive로 취급한다.
+      // passive 이벤트 리스너로 등록된 이벤트에서는
+      // event.preventDefault()를 호출할 수 없다.
+      // 따라서, passive를 false로 지정하여
+      // event.preventDefault()를 사용할 수 있도록 한다.
+    }, { passive: false });
+  </script>
+
+</body>
+
+</html>
