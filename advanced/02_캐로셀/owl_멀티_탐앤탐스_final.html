@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>탐앤탐스</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.theme.default.min.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
+  <style>
+    .carousel-wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      position: relative;
+      text-align: center;
+    }
+
+    /* ❗ 그림자 잘림의 주범 */
+    .owl-carousel .owl-stage-outer {
+      /* overflow: visible; */
+      /* hidden → visible */
+      padding-top: 30px;
+      /* 위쪽 그림자 공간 확보 */
+      padding-bottom: 30px;
+      /* 아래쪽도 함께 */
+    }
+
+    /* 모든 카드 기본 */
+    .owl-carousel .item {
+      position: relative;
+      border-radius: 28px;
+      overflow: visible;
+      /* ❗ 절대 hidden 쓰면 안 됨 */
+      background: #fff;
+      transition: all 0.35s ease;
+    }
+
+    /* 이미지 */
+    .owl-carousel .item img {
+      width: 100%;
+      display: block;
+      border-radius: 28px;
+    }
+
+    /* ⭐ 가운데 카드만 */
+    .owl-carousel .owl-item.center .item img {
+      outline: 8px solid #fff;
+      /* 바깥으로 밀기 */
+      box-shadow: 0 0px 12px rgba(0, 0, 0, 1);
+      /* 중심 기준 그림자 */
+      z-index: 10;
+      /* 옆 카드 위로 */
+    }
+
+
+    /* nav 전체 */
+    .carousel-wrap .owl-nav {
+      position: absolute;
+      top: 0%;
+      /* ✔ 정확한 중앙 */
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* 버튼 */
+    .carousel-wrap .owl-nav button {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      position: absolute;
+      top: calc(50% - 45px);
+      transform: translateY(-50%);
+      width: 10%;
+      max-width: 64px;
+      min-width: 32px;
+      aspect-ratio: 1 / 1;
+      padding: 0;
+      margin: 0 !important;
+      border: none !important;
+      pointer-events: auto;
+      background: rgba(0, 0, 0, 0.1) !important;
+      border-radius: 50% !important;
+      text-align: center !important;
+    }
+
+    /* hover 시에도 고정 */
+    .carousel-wrap .owl-nav button:hover {
+      /* transform: none !important; */
+      background: #eee !important;
+    }
+
+    /* 이미지 */
+    .carousel-wrap .owl-nav button img {
+      width: 20%;
+      height: auto;
+      /* width: 32px;
+            height: 32px; */
+      object-fit: contain;
+      display: block;
+    }
+
+    /* 좌우 위치 */
+    .carousel-wrap .owl-prev {
+      left: -40px;
+    }
+
+    .carousel-wrap .owl-next {
+      right: -40px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="carousel-wrap">
+    <div class="owl-carousel owl-theme">
+      <div class="item">
+        <img src="assets/1729499871291_[2_pëg.jpg" alt="페퍼로니 플레인 프레즐">
+        <h4>페퍼로니 플레인 프레즐</h4>
+      </div>
+      <div class="item">
+        <img src="assets/1756947181355_[í_p°g.jpg" alt="탐의보감">
+        <h4>탐의보감</h4>
+      </div>
+      <div class="item">
+        <img src="assets/1759128846625_[ì_pëg.jpg" alt="Golden Mellow Choux">
+        <h4>Golden Mellow Choux</h4>
+      </div>
+      <div class="item">
+        <img src="assets/1764219255005_[2_p_g.jpg" alt="Sweet Tea Holiday">
+        <h4>Sweet Tea Holiday</h4>
+      </div>
+      <div class="item">
+        <img src="assets/1764219319884_[2_p´g.jpg" alt="크로와상&amp;크로와상 샌드위치">
+        <h4>크로와상&amp;크로와상 샌드위치</h4>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $('.owl-carousel').owlCarousel({
+      stagePadding: 56,
+      items: 3,
+      autoplay: true,
+      loop: true,
+      margin: 16,
+      center: true, // 가운데 아이템 활성화
+      nav: true, // 기본값 false, prev/next 버튼
+      navText: ['<img src="assets/btn-specialtheater-prev.png" alt="이전 버튼">', '<img src="assets/btn-specialtheater-next.png" alt="다음 버튼">'], // 기본 텍스트 제거
+      dots: false, // 인디케이터
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 3
+        },
+        1000: {
+          items: 3
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

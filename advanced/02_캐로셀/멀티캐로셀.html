@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가로 스크롤 페이지 - 멀티 캐로셀</title>
+
+  <!-- Owl Carousel CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      /* 전체 페이지 스크롤 방지 */
+    }
+
+    #scroll-container {
+      width: 100vw;
+      height: 100vh;
+      overflow-x: auto;
+      /* 가로 스크롤바 표시 */
+      overflow-y: hidden;
+      white-space: nowrap;
+      /* 자식 요소 줄바꿈 방지 */
+
+      /* 스크롤바 스타일 */
+      scrollbar-width: thin;
+      scrollbar-color: rgba(158, 161, 161, 0.502) transparent;
+    }
+
+    #scroll-container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    #scroll-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    #scroll-container::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 4px;
+    }
+
+    #scroll-container::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .horizontal-wrap {
+      display: inline-flex;
+      width: max-content;
+      height: 100%;
+    }
+
+    .page {
+      width: 100vw;
+      height: 100vh;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 50px;
+      color: #fff;
+      font-weight: bold;
+      vertical-align: top;
+      position: relative;
+    }
+
+    .page1 {
+      background: #ff6b6b;
+    }
+
+    .page2 {
+      background: #4d96ff;
+    }
+
+    .page3 {
+      background: #6bcf63;
+    }
+
+    .page4 {
+      background: #ffc93c;
+    }
+
+    /* --- Owl Carousel 스타일 --- */
+    .carousel-wrapper {
+      width: 900px;
+      /* 요청하신 가로 900px */
+      height: 400px;
+      /* 요청하신 세로 400px */
+      display: block;
+      /* 중요: inline-flex 부모 안에서 크기 잡기 위해 */
+      background: rgba(0, 0, 0, 0.1);
+      /* 영역 확인용 배경 (선택사항) */
+    }
+
+    .item {
+      width: 100%;
+      height: 400px;
+      padding: 10px;
+      /* 아이템 간 간격 느낌 */
+      box-sizing: border-box;
+    }
+
+    .item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+
+  <!-- jQuery & Owl Carousel JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $(".owl-carousel").owlCarousel({
+        loop: true,       // 무한 반복
+        margin: 20,       // 아이템 간격 20px
+        nav: true,        // 좌우 화살표
+        items: 3,         // 한 화면에 3개 표시 (요청사항)
+        slideBy: 1,       // 1개씩 슬라이드 (요청사항)
+        autoplay: true,   // 자동 재생
+        autoplayTimeout: 3000,
+        autoplayHoverPause: true,
+        center: false,     // 중앙 정렬 아님 (3개가 꽉 차게)
+        dots: true,        // 하단 점
+        dotsEach: true     // ⭐ 페이지 단위가 아닌 아이템 개수만큼 점 표시
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <main id="scroll-container">
+    <div class="horizontal-wrap">
+      <section class="page page1">Page 1</section>
+
+      <section class="page page2">Page 2</section>
+
+      <!-- Page 3에 Owl Carousel 배치 -->
+      <section class="page page3">
+        <div class="carousel-wrapper">
+          <div class="owl-carousel owl-theme">
+            <div class="item"><img src="https://picsum.photos/id/1011/300/400" alt="Img 1"></div>
+            <div class="item"><img src="https://picsum.photos/id/1012/300/400" alt="Img 2"></div>
+            <div class="item"><img src="https://picsum.photos/id/1013/300/400" alt="Img 3"></div>
+            <div class="item"><img src="https://picsum.photos/id/1014/300/400" alt="Img 4"></div>
+            <div class="item"><img src="https://picsum.photos/id/1015/300/400" alt="Img 5"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page page4">Page 4</section>
+    </div>
+  </main>
+
+  <script>
+    // --- 스크롤 로직 (기존 유지) ---
+    const container = document.getElementById('scroll-container');
+    let target = container.scrollLeft;
+    let current = target;
+    let isMoving = false;
+
+    container.addEventListener("wheel", e => {
+      e.preventDefault();
+      if (!isMoving) target = current = container.scrollLeft;
+      target = Math.max(0, Math.min(container.scrollWidth - container.clientWidth, target + e.deltaY));
+      if (!isMoving) {
+        isMoving = true;
+        scrollAnimate();
+      }
+    }, { passive: false });
+
+    function scrollAnimate() {
+      current += (target - current) * 0.05;
+      container.scrollLeft = current;
+      if (Math.abs(target - current) < 0.5) {
+        isMoving = false;
+      } else {
+        requestAnimationFrame(scrollAnimate);
+      }
+    }
+  </script>
+</body>
+
+</html>
