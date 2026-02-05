@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도드람</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .section {
+            text-align: center;
+        }
+        .inner {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1540px;
+            margin: 0 auto;
+        }
+
+        .bx-wrapper .bx-viewport {
+            border-radius: 0 !important;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 1060px;
+            margin: 50px auto;
+        }
+        .sliderWrap2 {
+            width: 440px;
+        }
+
+        .bx-wrapper {
+            background: none;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 0;
+        }
+
+        /* 이미지 모서리 둥글게 */
+        .bxslider img {
+            border-radius: 32px;
+        }
+
+        /* 하단 컨트롤 영역 설정 */
+        .bx-wrapper .bx-controls {
+            z-index: 100;
+            position: absolute;
+            width: 100%;
+            bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 1. 페이저(점) 설정 */
+        .bx-wrapper .bx-pager {
+            position: relative;
+            bottom: 0;
+            width: auto !important;
+            padding: 0;
+            display: flex;
+            /* 재생 버튼과의 간격 */
+            margin-right: 16px;
+        }
+        .sliderWrap2 .bx-wrapper .bx-pager {
+            margin-right: 52px;
+        }
+
+        /* 인디케이터 점 스타일 (흰색) */
+        /* 비활성 점 */
+        .bx-wrapper .bx-pager.bx-default-pager a {
+            background: rgba(255, 255, 255, 0.4);
+            width: 8px;
+            height: 8px;
+        }
+
+        /* 활성 점 */
+        .bx-wrapper .bx-pager.bx-default-pager a.active {
+            background: #fff !important;
+            width: 24px;
+            border-radius: 12px;
+        }
+
+        /* 재생/일시정지 버튼 */
+        .play-toggle {
+            position: absolute;
+            bottom: 14px;
+            left: calc(50% + 30px);
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 11px;
+            text-decoration: none;
+            z-index: 200;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="section">
+        <h2><img src="assets/0c3d6c35bd0388d73a8ca987211f0061_35031.svg" alt="도드람몰"></h2>
+        <div class="inner">
+            <div class="slider-container slideWrap1">
+                <div class="bxslider1 bxslider">
+                    <div><img src="assets/82aecbd90fe04e4f6e9ab77bf9971edf_25206.png" alt="배너1"></div>
+                    <div><img src="assets/636df30c3aef1cd9391a65bab9dec200_87173.png" alt="배너2"></div>
+                </div>
+                <!-- 단일 재생/정지 버튼 -->
+                <a href="#" class="play-toggle"><span class="material-icons">pause</span></a>
+            </div>
+            <div class="slider-container sliderWrap2">
+                <div class="bxslider2 bxslider">
+                    <div><img src="assets/65180321a1d6b8c518cecd83b2d5f95b_62703.jpg" alt="배너1"></div>
+                    <div><img src="assets/154940ff7b76c7f146eb5e3c00af7757_89428.png" alt="배너2"></div>
+                    <div><img src="assets/1091334089b9e1d9e591e75602b54106_10073.png" alt="배너2"></div>
+                    <div><img src="assets/b01c2ce25e34f80d499f0488d034b00b_90109.png" alt="배너2"></div>
+                </div>
+                <!-- 단일 재생/정지 버튼 -->
+                <a href="#" class="play-toggle"><span class="material-icons">pause</span></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var isPlaying = true;
+
+        var slider = $('.bxslider1').bxSlider({
+            auto: true,
+            pager: true,
+            controls: false,
+            autoControls: false,
+            autoHover: true,
+            slideWidth: 1060,
+            touchEnabled: (navigator.maxTouchPoints > 0)
+        });
+
+        var slider = $('.bxslider2').bxSlider({
+            auto: true,
+            pager: true,
+            controls: false,
+            autoControls: false,
+            autoHover: true,
+            slideWidth: 440,
+            touchEnabled: (navigator.maxTouchPoints > 0)
+        });
+
+        $('.play-toggle').on('click', function (e) {
+            e.preventDefault();
+
+            if (isPlaying) {
+                slider.stopAuto();
+                $(this).html('<span class="material-icons">play_arrow</span>');
+            } else {
+                slider.startAuto();
+                $(this).html('<span class="material-icons">pause</span>');
+            }
+
+            isPlaying = !isPlaying;
+        });
+    </script>
+</body>
+
+</html>

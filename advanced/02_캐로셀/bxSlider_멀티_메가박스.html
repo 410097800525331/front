@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메가박스</title>
+    <!-- jquery.bxslider.min.css 라이브러리 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.css">
+    <!-- 제이쿼리 라이브러리 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- bxslider 라이브러리 -->
+    <script src="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.js"></script>
+    <style>
+        /* 초기값 */
+        body {
+            margin: 0;
+        }
+        #section .inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /* 섹션 제목 서식 지정 */
+        #section h2 {
+            padding: 50px 0;
+            font-size: 28px;
+            font-weight: normal;
+            color:#351f66;
+        }
+        /* .bxslider의 조상 div */
+        .bx-wrapper {
+            background: none;
+            border:none;
+            box-shadow: none;
+        }
+
+        /* 케로셀 아이템(이미지) 호버 효과 */
+        .bxslider div a {
+            display: block;
+            height: 170px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 5px 5px 10px 0 rgba(0,0,0,0.2);
+        }
+        .bxslider div:hover img {
+            transform: translateY(-50%);
+        }
+
+        /* prev/next 버튼 공통 */
+        .bx-wrapper .bx-controls-direction a {
+            background: none; /* 기존 버튼 숨기기 */
+            width: 16px;
+            height: 29px;
+        }
+        /* prev 버튼 */
+        .bx-wrapper .bx-prev {
+            left: -50px;
+        }
+        /* next 버튼 */
+        .bx-wrapper .bx-next {
+            right: -50px;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="section">
+        <div class="inner">
+            <h2>메가박스 안내</h2>
+            <div class="bxslider">
+                <div><a href="#"><img src="assets/bg-main-boutiq.png" alt="boutiq"></a></div>
+                <div><a href="#"><img src="assets/bg-main-comfort.png" alt="comfort"></a></div>
+                <div><a href="#"><img src="assets/bg-main-dolbyatmos.png" alt="dolbyatmos"></a></div>
+                <div><a href="#"><img src="assets/bg-main-dolbycinema.png" alt="dolbycinema"></a></div>
+                <div><a href="#"><img src="assets/bg-main-dva.png" alt="dva"></a></div>
+                <div><a href="#"><img src="assets/bg-main-led.png" alt="led"></a></div>
+                <div><a href="#"><img src="assets/bg-main-mx4d.png" alt="mx4d"></a></div>
+                <div><a href="#"><img src="assets/bg-main-private.png" alt="private"></a></div>
+                <div><a href="#"><img src="assets/bg-main-recliner.png" alt="recliner"></a></div>
+                <div><a href="#"><img src="assets/bg-main-suite.png" alt="suite"></a></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('.bxslider').bxSlider({
+            auto: true, // 자동 슬라이드
+            pager: false, // 기본값 true, 인디케이터
+            stopAutoOnClick: true, // 버튼 클릭시 자동 슬라이드 일시정지
+            autoHover: true, // 이미지에 호버 시 자동 슬라이드 일시정지
+            slideWidth: 170, // 아이템 하나의 가로 크기
+            speed: 800, // 전환 속도(ms)
+            pause: 5000, // 자동 슬라이드 간격
+
+            minSlides: 6, // 기본값 1, 반응형
+            maxSlides: 6, // 기본값 1, 반응형
+            moveSlides: 1, // 기본값 0, 아이템 이동 개수
+            slideMargin: 16, // 기본값 0, 아이템 사이 여백
+
+            prevText: '<img src="assets/btn-specialtheater-prev.png" alt="이전 버튼">',
+            nextText: '<img src="assets/btn-specialtheater-next.png" alt="다음 버튼">',
+        });
+    </script>
+</body>
+
+</html>

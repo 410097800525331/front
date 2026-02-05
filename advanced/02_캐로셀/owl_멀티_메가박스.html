@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메가박스</title>
+    <!-- Owl Carousel 2 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <!-- 제이쿼리 라이브러리 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Owl Carousel 2 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <style>
+        /* 초기값 */
+        body {
+            margin: 0;
+        }
+
+        #section .inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            /* 화살표 위치 기준 */
+        }
+
+        /* 섹션 제목 서식 지정 */
+        #section h2 {
+            padding: 50px 0;
+            font-size: 28px;
+            font-weight: normal;
+            color: #351f66;
+        }
+
+        /* 케로셀 아이템(이미지) 호버 효과 - Owl Carousel 구조에 맞게 수정 */
+        .owl-carousel .item a {
+            display: block;
+            height: 170px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .owl-carousel .item:hover img {
+            transform: translateY(-50%);
+            transition: transform 0.3s ease;
+            /* 부드러운 전환 효과 추가 */
+        }
+
+        /* prev/next 버튼 커스텀 스타일 */
+        .owl-theme .owl-nav {
+            margin-top: 0;
+            /* 기본 마진 제거 */
+        }
+
+        .owl-carousel .owl-nav button.owl-prev,
+        .owl-carousel .owl-nav button.owl-next {
+            position: absolute;
+            top: 50%;
+            /* 컨테이너 높이의 중간 */
+            transform: translateY(-50%);
+            width: 16px;
+            height: 29px;
+            background: none !important;
+            /* Owl 기본 스타일 덮어쓰기 */
+            margin: 0;
+            padding: 0 !important;
+            outline: none;
+        }
+
+        /* 
+           위치 조정:
+           Owl Carousel은 .owl-nav가 .owl-stage-outer 다음에 위치함.
+           단순 50%는 .owl-carousel 전체 높이의 50%임.
+           .owl-carousel은 이미지 높이만큼 잡히므로(약 180~200px), 
+           이 경우 이미지의 중앙에 대략 맞게 됨.
+        */
+        .owl-carousel .owl-nav button.owl-prev {
+            left: -50px;
+        }
+
+        .owl-carousel .owl-nav button.owl-next {
+            right: -50px;
+        }
+
+        .owl-carousel .owl-nav button.owl-prev img,
+        .owl-carousel .owl-nav button.owl-next img {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Owl Carousel 이미지 스타일 */
+        .owl-carousel .item img {
+            display: block;
+            width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="section">
+        <div class="inner">
+            <h2>메가박스 안내</h2>
+            <div class="owl-carousel owl-theme">
+                <div class="item"><a href="#"><img src="assets/bg-main-boutiq.png" alt="boutiq"></a></div>
+                <div class="item"><a href="#"><img src="assets/bg-main-comfort.png" alt="comfort"></a></div>
+                <div class="item"><a href="#"><img src="assets/bg-main-dolbyatmos.png" alt="dolbyatmos"></a></div>
+                <div class="item"><a href="#"><img src="assets/bg-main-dolbycinema.png" alt="dolbycinema"></a></div>
+                <div class="item"><a href="#"><img src="assets/bg-main-dva.png" alt="dva"></a></div>
+                <div class="item"><a href="#"><img src="assets/bg-main-led.png" alt="led"></a></div>
+                <div class="item"><a href="#"><img src="assets/bg-main-mx4d.png" alt="mx4d"></a></div>
+                <div class="item"><a href="#"><img src="assets/bg-main-private.png" alt="private"></a></div>
+                <div class="item"><a href="#"><img src="assets/bg-main-recliner.png" alt="recliner"></a></div>
+                <div class="item"><a href="#"><img src="assets/bg-main-suite.png" alt="suite"></a></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 16,
+                nav: true,
+                dots: false,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                smartSpeed: 800,
+                items: 6,
+                navText: [
+                    '<img src="assets/btn-specialtheater-prev.png" alt="이전 버튼">',
+                    '<img src="assets/btn-specialtheater-next.png" alt="다음 버튼">'
+                ]
+            });
+        });
+    </script>
+</body>
+
+</html>

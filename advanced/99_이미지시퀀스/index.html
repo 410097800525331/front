@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Array Based Image Sequence</title>
+    <style>
+        body { margin: 0;}
+        
+        /* 스크롤 공간 확보 */
+        .scroll-height { height: 500vh; }
+
+        .sticky-view {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #main-img {
+            max-width: 100%;
+            max-height: 80vh;
+            /* 이미지 교체 시 끊김을 최소화하기 위한 설정 */
+            will-change: content; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scroll-height">
+        <div class="sticky-view">
+            <img id="main-img" src="" alt="Sequence">
+        </div>
+    </div>
+
+    <script>
+        const imgTag = document.getElementById('main-img');
+        const frameCount = 28;
+        
+        // 1. 이미지 객체들을 담을 배열 생성
+        const imageObjects = [];
+
+        // 2. 이미지 미리 로드 (Preloading)
+        // 배열에 Image 객체를 담아두면 브라우저가 이미지를 메모리에 캐싱합니다.
+        for (let i = 1; i <= frameCount; i++) {
+            const imgObj = new Image();
+            imgObj.src = `assets/img_sq/ezgif-frame-${i.toString().padStart(3, '0')}.png`;
+            imageObjects.push(imgObj);
+        }
+
+        // 초기 이미지 설정
+        imageObjects[0].onload = () => {
+            imgTag.src = imageObjects[0].src;
+        };
+
+        // 3. 스크롤 이벤트 최적화 (Throttling 개념 적용)
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollFraction = scrollTop / maxScroll;
+
+            // 현재 순서 계산
+            const index = Math.min(
+                frameCount - 1,
+                Math.floor(scrollFraction * frameCount)
+            );
+
+            // 배열에 저장된 이미지 객체의 src를 가져와서 교체
+            // 이미 메모리에 로드된 상태라 즉시 교체됩니다.
+            if (imageObjects[index].complete) {
+                imgTag.src = imageObjects[index].src;
+            }
+        });
+    </script>
+</body>
+</html>

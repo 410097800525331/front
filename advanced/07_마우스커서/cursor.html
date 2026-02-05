@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마우스 커서</title>
+    <style>
+        .cursor {
+            position: fixed;
+            border-radius: 50%;
+            /* 커서가 클릭을 방해하지 않도록 설정 */
+            pointer-events: none;
+            /* 중심을 마우스 끝에 맞춤 */
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out;
+            width: 12px;
+            height: 12px;
+            background-color: #000;
+            z-index: 999;
+        }
+
+        .cursor::after {
+            content: 'View';
+            position: absolute;
+            top:50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            font-size: 2px;
+            color: #fff;
+        }
+
+        /* 커서가 커졌을 때 적용할 스타일 */
+        .cursor.active {
+            /* 10배 확대 */
+            transform: translate(-50%, -50%) scale(10);
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1><a href="#">링크 요소입니다.</a></h1>
+    <div class="cursor"></div>
+    <script>
+        const cursor = document.querySelector('.cursor');
+
+        window.addEventListener('mousemove', (e) => {
+            // 마우스의 X, Y 좌표를 가져와서 커서 위치에 대입
+            console.log("마우스 x좌표: ", e.clientX);
+            console.log("마우스 y좌표: ", e.clientY);
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // 커서 본체 이동
+            cursor.style.left = `${posX}px`;
+            cursor.style.top = `${posY}px`;
+
+        });
+
+        const links = document.querySelectorAll('a'); // 모든 링크 요소 선택
+
+        links.forEach(link => {
+            // 마우스를 올렸을 때
+            link.addEventListener('mouseenter', () => {
+                cursor.classList.add('active');
+            });
+
+            // 마우스가 나갔을 때
+            link.addEventListener('mouseleave', () => {
+                cursor.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

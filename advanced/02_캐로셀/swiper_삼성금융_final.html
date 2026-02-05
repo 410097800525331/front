@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삼성금융 캐러셀</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <style>
+        /* 캐러셀 컨테이너 스타일 */
+        .swiper {
+            max-width: 1100px;
+            width: 100%;
+            padding-top: 50px; /* coverflow 효과 때문에 슬라이드가 위로 튀어나올 수 있어 여백 추가 */
+            padding-bottom: 50px; /* 그림자 효과 때문에 여백 추가 */
+            overflow: hidden; /* 컨테이너 밖으로 나가는 부분 숨김 */
+        }
+
+        /* 각 슬라이드의 스타일 */
+        .swiper-slide {
+            width: 900px; /* iframe의 width와 동일하게 설정하여 잘림 방지 */
+            height: 506px; /* iframe의 height와 동일하게 설정 */
+            background-color: #f0f0f0; /* 배경색으로 슬라이드 영역 확인용 */
+            display: flex; /* iframe 가운데 정렬을 위해 flexbox 사용 */
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* 입체감을 위한 그림자 */
+            border-radius: 8px; /* 부드러운 모서리 */
+            overflow: hidden; /* iframe이 슬라이드 영역을 벗어나지 않도록 */
+        }
+        .swiper-slide iframe {
+            opacity: .5;
+            transition: .3s ease;
+        }
+        .swiper-slide-active iframe {
+            opacity: 1;
+        }
+
+        /* 유튜브 iframe 스타일 */
+        .swiper-slide iframe {
+            display: block; /* 불필요한 하단 여백 제거 */
+            max-width: 100%; /* 슬라이드 크기에 맞춰 유동적으로 */
+            max-height: 100%; /* 슬라이드 크기에 맞춰 유동적으로 */
+        }
+
+        /* 기존 버튼 숨기기 */
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            display: none !important;
+        }
+
+        /* 네비게이션 버튼 스타일 (선택사항, 필요시 주석 해제) */
+        .swiper-button-prev,
+        .swiper-button-next {
+            z-index: 1000;
+            color: #007aff; /* 버튼 색상 */
+            transform: scale(2); /* 버튼 크기 키우기 */
+            background: url(assets/year-prev.png) no-repeat 50% 50%/contain;
+            left:50%;
+        }
+        .swiper-button-prev:hover,
+        .swiper-button-next:hover {
+            background: url(assets/year-next-on.png) no-repeat 50% 50%/contain;
+        }
+        .swiper-button-next {
+            left: calc(50% + 380px);
+            transform: rotate(180deg) scale(2);
+        }
+        .swiper-button-prev {
+            left: calc(50% - 480px);
+        }
+        .swiper-button-next:hover {
+            transform: rotate(0deg) scale(2);
+        }
+        .swiper-button-prev:hover {
+            transform: rotate(180deg) scale(2);
+        }
+
+        /* 페이지네이션 활성 점 색상 */
+        /* .swiper-pagination-bullet-active {
+            background: #007aff;
+        } */
+
+    </style>
+</head>
+
+<body>
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <iframe width="900" height="506" src="https://www.youtube.com/embed/4uGCRxrbwBo"
+                    title="2025 삼성금융 C-Lab Outside 협업 스타트업" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="swiper-slide">
+                <iframe width="900" height="506" src="https://www.youtube.com/embed/rbytZpkZld0"
+                    title="2025 삼성금융 C-Lab Outside 삼성생명 협업사 소개" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="swiper-slide">
+                <iframe width="900" height="506" src="https://www.youtube.com/embed/6KBrlMfe8sA"
+                    title="2025 삼성금융 C-Lab Outside 삼성화재 협업사 소개" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="swiper-slide">
+                <iframe width="900" height="506" src="https://www.youtube.com/embed/ZE6E9HwERL4"
+                    title="2025 삼성금융 C-Lab Outside 삼성카드 협업사 소개" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="swiper-slide">
+                <iframe width="900" height="506" src="https://www.youtube.com/embed/TYi53nzYCvc"
+                    title="삼성금융 C-Lab outside 삼성증권 협업 스타트업" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- <div class="swiper-pagination"></div> -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const swiper = new Swiper(".swiper", {
+                effect: "coverflow", // 입체적인 캐러셀 효과
+                grabCursor: true,    // 마우스 커서가 잡기 모양으로 변경
+                //centeredSlides: true, // 활성 슬라이드를 중앙에 배치
+                slidesPerView: "auto", // 슬라이드의 CSS width에 따라 자동 계산
+                //loop: true,          // 무한 반복 슬라이드
+                
+                // coverflow 효과 세부 설정
+                coverflowEffect: {
+                    rotate: 0,      // 슬라이드 회전 각도
+                    stretch: 550,      // 슬라이드 간의 거리
+                    depth: 500,      // 깊이감 (뒤로 갈수록 작아지는 정도)
+                    modifier: 1,     // 효과 강도
+                    slideShadows: true, // 슬라이드에 그림자 효과
+                },
+
+                // 자동 재생 설정
+                // autoplay: {
+                //     delay: 3000, // 3초마다 슬라이드 변경
+                //     disableOnInteraction: false, // 사용자 상호작용 후에도 자동 재생 유지
+                // },
+
+                // 페이지네이션 (하단 점)
+                // pagination: {
+                //     el: ".swiper-pagination",
+                //     clickable: true,
+                // },
+
+                // 네비게이션 버튼 (이전/다음 화살표)
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                
+                // 유튜브 iframe 클릭 시 자동 재생 멈춤 방지
+                // Swiper 6.x 이상에서는 autoHeight 설정 시 iframe 높이 문제 발생 가능성 있어 주의
+                // preventInteractionOnTransition: true, // 슬라이드 전환 중 상호작용 방지
+            });
+
+            // 유튜브 영상 클릭 시 자동 슬라이드 일시정지 및 다시 시작 로직 추가 (선택적)
+            swiper.on('click', function(swiper, event) {
+                if (event.target.tagName === 'IFRAME') {
+                    swiper.autoplay.stop(); // iframe 클릭 시 자동 재생 정지
+                }
+            });
+            swiper.on('slideChangeTransitionEnd', function() {
+                // 슬라이드 전환이 끝나고 현재 슬라이드가 iframe이 아니면 다시 자동 재생
+                // 이 부분은 유튜브 영상이 끝난 후에 자동 재생을 재개하는 등의 복잡한 로직이 필요할 수 있습니다.
+                // 일단은 단순하게 슬라이드가 넘어가면 다시 시작하도록 합니다.
+                 if (swiper.autoplay.running === false) {
+                     swiper.autoplay.start();
+                 }
+            });
+        });
+    </script>
+</body>
+
+</html>

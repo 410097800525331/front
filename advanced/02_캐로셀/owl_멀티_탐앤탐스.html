@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>탐앤탐스</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            text-align: center;
+        }
+
+        h2 {
+            padding: 50px 0;
+            font-size: 32px;
+            font-weight: 800;
+        }
+
+        h2 span {
+            font-weight: 300;
+        }
+
+        /* Carousel Layout */
+        .owl-carousel {
+            width: 100%;
+            max-width: 1200px;
+            /* 적절한 최대 너비 설정 */
+            margin: 0 auto;
+        }
+
+        .owl-stage-outer {
+            padding: 20px 0;
+            /* 그림자 잘림 방지 */
+            overflow: visible;
+            /* 양옆 아이템이 보이도록 설정 */
+        }
+
+        .owl-carousel .owl-stage {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Item Style */
+        .item {
+            text-align: center;
+            opacity: 1;
+            transition: all 0.3s;
+            margin: 0 10px;
+            /* 아이템 간 간격 */
+        }
+
+        /* Center Item Style */
+        .owl-item.center .item {
+            transform: scale(1.1);
+            /* 가운데 아이템 확대 */
+            z-index: 10;
+        }
+
+        .img_box {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            /* 기본 배경 */
+            aspect-ratio: 1/1;
+            /* 정사각형 비율 유지 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .img_box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .item p {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+
+        /* Navigation Buttons */
+        .owl-nav button.owl-prev,
+        .owl-nav button.owl-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(200, 200, 200, 0.5) !important;
+            /* 배경색 임의 지정 */
+            margin: 0 !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .owl-nav button.owl-prev {
+            left: -60px;
+            /* 컨테이너 밖으로 배치 */
+        }
+
+        .owl-nav button.owl-next {
+            right: -60px;
+        }
+
+        /* 이미지에 따른 배경색 예시 (실제 이미지에 맞춰 조정 필요) */
+        .bg-yellow {
+            background-color: #ffe668;
+        }
+
+        .bg-gray {
+            background-color: #e3ded6;
+        }
+
+        .bg-red {
+            background-color: #ce0220;
+        }
+
+        .bg-darkred {
+            background-color: #8c001a;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>TOM N TOMS <span>MENU</span></h2>
+
+    <div class="owl-carousel owl-theme">
+        <!-- Loop Items directly matching the style -->
+        <div class="item">
+            <img src="assets/1729499871291_[2_pëg.jpg" alt="페퍼로니 플레인 프레즐">
+            <h4>페퍼로니 플레인 프레즐</h4>
+        </div>
+        <div class="item">
+            <img src="assets/1756947181355_[í_p°g.jpg" alt="탐의보감">
+            <h4>탐의보감</h4>
+        </div>
+        <div class="item">
+            <img src="assets/1759128846625_[ì_pëg.jpg" alt="Golden Mellow Choux">
+            <h4>Golden Mellow Choux</h4>
+        </div>
+        <div class="item">
+            <img src="assets/1764219255005_[2_p_g.jpg" alt="Sweet Tea Holiday">
+            <h4>Sweet Tea Holiday</h4>
+        </div>
+        <div class="item">
+            <img src="assets/1764219319884_[2_p´g.jpg" alt="크로와상&amp;크로와상 샌드위치">
+            <h4>크로와상&amp;크로와상 샌드위치</h4>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            var owl = $('.owl-carousel');
+            owl.owlCarousel({
+                items: 3,             // 화면에 3개 아이템 표시
+                border: false,
+                loop: true,           // 무한 반복
+                center: true,         // 가운데 아이템 강조 모드
+                margin: 30,           // 아이템 간 간격
+                nav: true,            // 네비게이션 버튼 표시
+                dots: false,          // 페이지네이션 점 숨김
+                autoplay: false,      // 자동 슬라이드 (필요시 true)
+                mouseDrag: true,
+                navText: [
+                    '<img src="assets/btn_slide_prev_new.png" alt="Prev">',
+                    '<img src="assets/btn_slide_next_new.png" alt="Next">'
+                ],
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 3  // 모바일/태블릿 반응형 고려
+                    },
+                    1000: {
+                        items: 3
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

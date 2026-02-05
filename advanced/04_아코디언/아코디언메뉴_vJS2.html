@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>아코디언 UI</title>
+    <style>
+        /* 기본 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+
+        /* 아코디언 영역 */
+        .accordion {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+        }
+
+        /* 메인 메뉴 */
+        .accordion .main>li>a {
+            padding: 15px;
+            background: #222;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* 서브 메뉴 기본 상태 */
+        .accordion .sub {
+            max-height: 0;
+            overflow: hidden;
+            background: #f5f5f5;
+            transition: max-height 0.3s ease;
+        }
+
+        /* 서브 메뉴 아이템 */
+        .accordion .sub li a {
+            padding: 12px 15px;
+            border-top: 1px solid #ddd;
+        }
+
+        /* 클릭 시 열림 */
+        .accordion .main>li.active .sub {
+            max-height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>아코디언 UI</h2>
+        <nav class="accordion">
+            <ul class="main">
+                <li><a href="#">메인메뉴1</a>
+                    <ul class="sub">
+                        <li><a href="#">서브메뉴1</a></li>
+                        <li><a href="#">서브메뉴2</a></li>
+                        <li><a href="#">서브메뉴3</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">메인메뉴2</a>
+                    <ul class="sub">
+                        <li><a href="#">서브메뉴1</a></li>
+                        <li><a href="#">서브메뉴2</a></li>
+                        <li><a href="#">서브메뉴3</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">메인메뉴2</a>
+                    <ul class="sub">
+                        <li><a href="#">서브메뉴1</a></li>
+                        <li><a href="#">서브메뉴2</a></li>
+                        <li><a href="#">서브메뉴3</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav><!-- //.accordion -->
+    </header>
+
+    <script>
+        const menus = document.querySelectorAll('.accordion .main > li > a');
+
+        menus.forEach(menu => {
+            menu.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const currentLi = this.parentElement;
+                const allLi = document.querySelectorAll('.accordion .main > li');
+
+                // 다른 메뉴는 모두 닫기
+                allLi.forEach(li => {
+                    if (li !== currentLi) {
+                        li.classList.remove('active');
+                    }
+                });
+
+                // 현재 메뉴 토글
+                currentLi.classList.toggle('active');
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>눈 내리는 효과</title>
+    <style>
+        body {background: #000;}
+    .notion-snow {
+        position: fixed;
+        top: -10px;
+        user-select: none;
+        pointer-events: none; /* 중요: 클릭 방해 금지 */
+        z-index: -1;
+        color: #ffffff; /* 흰색 눈송이 */
+        filter: blur(1px); /* 살짝 흐릿하게 하여 몽환적인 느낌 */
+    }
+
+    @keyframes snowFall {
+        0% { transform: translateY(0) translateX(0); opacity: 0; }
+        10% { opacity: 0.8; }
+        100% { transform: translateY(105vh) translateX(var(--drift)); opacity: 0.2; }
+    }
+    </style>
+</head>
+<body>
+    <h1>눈이 내리는 웹사이트</h1>
+    <p style="text-align: center; margin-top: 500px;">스크롤을 내려보세요!</p>
+    <p style="text-align: center; margin-top: 800px;">눈은 계속 내립니다.</p>
+
+
+    <script>
+function createSnow() {
+        const snow = document.createElement('div');
+        snow.innerHTML = '❄';
+        snow.className = 'notion-snow';
+        
+        // 랜덤 설정
+        const startX = Math.random() * window.innerWidth;
+        const size = Math.random() * 15 + 10 + 'px';
+        const duration = Math.random() * 10 + 10 + 's';
+        const drift = (Math.random() - 0.5) * 200 + 'px'; // 좌우 휘날림 정도
+
+        snow.style.left = startX + 'px';
+        snow.style.fontSize = size;
+        snow.style.animation = `snowFall ${duration} linear infinite`;
+        snow.style.setProperty('--drift', drift);
+        snow.style.opacity = Math.random();
+
+        document.body.appendChild(snow);
+
+        // 애니메이션이 끝나면 요소 삭제 (성능 최적화)
+        setTimeout(() => {
+            snow.remove();
+        }, parseFloat(duration) * 1000);
+    }
+
+    // 300ms마다 눈송이 하나씩 생성 (밀도 조절)
+    setInterval(createSnow, 300);
+    </script>
+</body>
+</html>

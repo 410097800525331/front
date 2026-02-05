@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아코디언 UI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+        @import url(css/menu-btn.css);
+
+        /* 초기값 */
+        * {
+            box-sizing: border-box;
+        }
+
+        body,
+        ul {
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            font-size: 15px;
+            line-height: 1.6;
+            font-family: "굴림", sans-serif;
+            background: #fff;
+        }
+
+        i {
+            color: #3E3A39;
+            font-size: 20px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            background: yellow;
+        }
+
+        header .inner {
+            position: absolute;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            overflow-y: auto;
+            padding-top: 80px;
+            background: #fff;
+            transition: .3s;
+        }
+        header .inner.active {
+            right:0;
+        }
+
+        /* 1depth */
+        .main>li {
+            border-bottom: 1px solid #d9d9d9;
+        }
+
+        .main>li>a {
+            position: relative;
+            font-size: 16px;
+            color: #333;
+            display: block;
+            padding: 16px 24px;
+        }
+
+        .main>li.active {
+            background: #3E3A39;
+        }
+
+        .main>li.active>a {
+            color: #fed900;
+        }
+
+        .main>li>a::before {
+            content: "";
+            width: 2px;
+            height: 10px;
+            background-color: #fed900;
+            position: absolute;
+            top: 50%;
+            right: 39px;
+            transform: translateY(-50%);
+            transition: .3s;
+        }
+
+        .main>li>a::after {
+            content: "";
+            width: 10px;
+            height: 2px;
+            background-color: #fed900;
+            position: absolute;
+            top: 50%;
+            right: 35px;
+            transform: translateY(-50%);
+        }
+
+        .newIcon {
+            margin-left: 8px;
+        }
+
+        /* 2depth */
+        .sub li:not(:last-child) {
+            border-bottom: 1px solid #eee;
+        }
+
+        .sub li a {
+            position: relative;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .sub li a::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            border-bottom: 1px solid rgba(174, 40, 40, 0.493);
+            transform: scaleX(0);
+            transform-origin: 0 0;
+            transition: 0.5s;
+        }
+
+        .sub li a:hover::before {
+            transform: scaleX(1);
+        }
+
+        .sub-wrapper {
+            display: grid;
+            grid-template-rows: 0fr;
+            /* 초기 상태: 높이 0 */
+            transition: grid-template-rows 0.3s ease-out;
+            background: #f9f9f9;
+        }
+
+        .main>li.active .sub-wrapper {
+            grid-template-rows: 1fr;
+            /* 활성화 시 내용만큼 높이 늘어남 */
+        }
+
+        .sub {
+            overflow: hidden;
+        }
+
+        .sub li a {
+            display: block;
+            padding: 10px 30px;
+            font-size: 14px;
+        }
+
+        .sub li a:hover {
+            background: #eee;
+        }
+
+        /* 유틸: SNS 기타 */
+        header .util {
+            margin-top: 50px;
+            margin-left: 20px;
+        }
+
+        /* 로그인 버튼 */
+        header .login {
+            margin-top: 16px;
+            margin-left: 20px;
+        }
+
+        header .login a:first-child::after {
+            content: " | ";
+            margin: 0 8px;
+            font-size: 12px;
+            vertical-align: top;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <!-- Collapsed Menu Icon: 햄버거 메뉴 -->
+        <div class="mwrap">
+            <a class="menu-btn" href="#">
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+        <div class="inner">
+            <nav id="gnb">
+                <!-- 1depth -->
+                <ul class="main">
+                    <li><a href="#">BRAND</a>
+                        <!-- 2depth -->
+                        <div class="sub-wrapper">
+                            <ul class="sub">
+                                <li><a href="#">ABOUT US</a></li>
+                                <li><a href="#">비터홀릭</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">FRANCHISE</a>
+                        <div class="sub-wrapper">
+                            <ul class="sub">
+                                <li><a href="#">가맹문의</a></li>
+                                <li><a href="#">창업비용</a></li>
+                                <li><a href="#">가맹절차</a></li>
+                                <li><a href="#">창업스토리</a></li>
+                                <li><a href="#">제휴 및 제안</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">MENU</a>
+                        <div class="sub-wrapper">
+                            <ul class="sub">
+                                <li><a href="#">컴포즈 콤보</a></li>
+                                <li><a href="#">커피·더치</a></li>
+                                <li><a href="#">논커피 라떼</a></li>
+                                <li><a href="#">프레페·스무디</a></li>
+                                <li><a href="#">밀크쉐이크</a></li>
+                                <li><a href="#">에이드·주스</a></li>
+                                <li><a href="#">티</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">STORE</a>
+                        <div class="sub-wrapper">
+                            <ul class="sub">
+                                <li><a href="#">매장찾기</a></li>
+                                <li><a href="#">아이스크림 취급점</a></li>
+                                <li><a href="#">고객의 소리</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">NEWS<img src="assets/new.gif" alt="최근 소식" class="newIcon"></a>
+                        <div class="sub-wrapper">
+                            <ul class="sub">
+                                <li><a href="#">공지사항</a></li>
+                                <li><a href="#">NEWS</a></li>
+                                <li><a href="#">EVENTS</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">Partner Lounge</a></li>
+                </ul>
+            </nav>
+            <div class="util">
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-app-store-ios"></i></a>
+                <a href="#"><i class="fa-brands fa-google-play"></i></a>
+                <a href="#"><i class="fa-regular fa-folder-open"></i></a>
+            </div>
+            <div class="login">
+                <a href="#"><i class="fa-solid fa-user"></i></a>
+                <a href="#"><i class="fa-solid fa-user-plus"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const navBody = document.querySelector(".inner");
+            const mainItems = document.querySelectorAll(".main > li");
+            const mbtn = document.querySelector('.menu-btn');
+
+            // 1. 아코디언 메뉴 로직
+            mainItems.forEach(item => {
+                const link = item.querySelector('a'); // 클릭할 대상
+
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    // 다른 메뉴 닫기 (하나만 열리게 하고 싶을 때)
+                    mainItems.forEach(otherItem => {
+                        if (otherItem !== item) otherItem.classList.remove('active');
+                    });
+
+                    // 현재 메뉴 토글
+                    item.classList.toggle('active');
+                });
+            });
+
+            // 2. 햄버거 버튼 로직 (반복문 적용)
+            mbtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                this.classList.toggle('active');
+                navBody.classList.toggle('active');
+
+                // 자식 span들 한꺼번에 제어
+                const spans = this.querySelectorAll('span');
+                spans.forEach(span => span.classList.toggle('active'));
+                this.parentElement.classList.toggle('active');
+            });
+        });
+    </script>
+
+</body>
+
+</html>

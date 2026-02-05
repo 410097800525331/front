@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 탭 메뉴</title>
+    <style>
+        /* 초기화 */
+        body,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 탭 전체 */
+        .tab-container {
+            width: 800px;
+            margin: auto;
+        }
+
+        /* 탭 버튼 전체 스타일 */
+        .tab-buttons {
+            /* 버튼 가로 배치 */
+            display: flex;
+            gap: 5px;
+        }
+
+        /* 버튼 아이템 */
+        .tab-buttons li {
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            background-color: #ddd2d2;
+            transition: background .3s;
+            cursor: pointer;
+        }
+
+        /* 버튼 아이템 오른쪽 여백 */
+        /* .tab-buttons li:not(:last-of-type) {
+            margin-right: 5px;
+        } */
+
+        .tab-buttons li.active {
+            background-color: #9b7d7d;
+            font-weight: bold;
+        }
+
+        /* 탭 내용 스타일 */
+        .tab-content {
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .tab-panel {
+            /* 기본 숨김 */
+            display: none;
+        }
+
+        .tab-panel.active {
+            /* 활성화된 탭 표시 */
+            display: block;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+</head>
+
+<body>
+
+    <div class="tab-container">
+        <!-- 탭 버튼 -->
+        <ul class="tab-buttons">
+            <!-- data-*: 사용자 정의 속성 -->
+            <li class="active" data-tab="tab1">탭 1</li>
+            <li data-tab="tab2">탭 2</li>
+            <li data-tab="tab3">탭 3</li>
+        </ul>
+
+        <!-- 탭 내용 -->
+        <div class="tab-content">
+            <div id="tab1" class="tab-panel active">
+                <p>탭 1 내용입니다.</p>
+            </div>
+            <div id="tab2" class="tab-panel">
+                <p>탭 2 내용입니다.</p>
+            </div>
+            <div id="tab3" class="tab-panel">
+                <p>탭 3 내용입니다.</p>
+            </div>
+        </div><!-- //.tab-content -->
+    </div><!-- //.tab-container -->
+
+    <script>
+        // 탭 버튼 클릭 이벤트
+        $(".tab-buttons li").click(function () {
+            const tab_id = $(this).data("tab"); // 클릭한 탭의 data-tab 값 가져오기
+
+            // 1. 모든 탭 버튼에서 active 제거
+            $(".tab-buttons li").removeClass("active");
+
+            // 2. 클릭한 버튼에 active 추가
+            $(this).addClass("active");
+
+            // 3. 모든 탭 내용에서 active 제거
+            $(".tab-panel").removeClass("active");
+
+            // 4. 클릭한 탭과 동일한 ID 가진 탭 내용에 active 추가
+            $("#" + tab_id).addClass("active");
+        });
+    </script>
+</body>
+
+</html>

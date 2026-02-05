@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <style>
+        .video-wrapper {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .video-card {
+            width: 300px;
+            background: #f4f4f4;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .controls {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video-wrapper">
+        <div class="video-card">
+            <video class="custom-video" src="assets/video1.mp4"></video>
+            <div class="controls">
+                <button class="btn-play">재생</button>
+                <button class="btn-mute"><span class="material-symbols-outlined">volume_up</span></button>
+            </div>
+        </div>
+        <div class="video-card">
+            <video class="custom-video" src="assets/video2.mp4"></video>
+            <div class="controls">
+                <button class="btn-play">재생</button>
+                <button class="btn-mute"><span class="material-symbols-outlined">volume_up</span></button>
+            </div>
+        </div>
+        <div class="video-card">
+            <video class="custom-video" src="assets/video3.mp4"></video>
+            <div class="controls">
+                <button class="btn-play">재생</button>
+                <button class="btn-mute"><span class="material-symbols-outlined">volume_up</span></button>
+            </div>
+        </div>
+        <script>
+            const allVideos = document.querySelectorAll('.custom-video');
+            const playBtns = document.querySelectorAll('.btn-play');
+            const muteBtns = document.querySelectorAll('.btn-mute');
+
+            // 1. 재생 로직: 하나를 켜면 나머지를 정지
+            allVideos.forEach((video) => {
+                video.addEventListener('play', () => {
+                    // 현재 재생된 비디오를 제외한 나머지를 찾아 일시정지
+                    allVideos.forEach((otherVideo) => {
+                        if (otherVideo !== video) {
+                            otherVideo.pause();
+                            // 다른 비디오들의 버튼 텍스트도 '재생'으로 변경
+                            const otherBtn = otherVideo.nextElementSibling.querySelector('.btn-play');
+                            if (otherBtn) otherBtn.textContent = '재생';
+                        }
+                    });
+                });
+            });
+
+            // 2. 재생 버튼 이벤트 연결
+            playBtns.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                    const targetVideo = allVideos[index];
+                    if (targetVideo.paused) {
+                        targetVideo.play();
+                        btn.textContent = '일시정지';
+                    } else {
+                        targetVideo.pause();
+                        btn.textContent = '재생';
+                    }
+                });
+            });
+
+            // 3. 음소거 토글 (구글 아이콘 변경)
+            muteBtns.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                    const targetVideo = allVideos[index];
+                    const icon = btn.querySelector('.material-symbols-outlined');
+
+                    targetVideo.muted = !targetVideo.muted;
+                    icon.textContent = targetVideo.muted ? 'volume_off' : 'volume_up';
+                });
+            });
+        </script>
+    </div>
+</body>
+
+</html>

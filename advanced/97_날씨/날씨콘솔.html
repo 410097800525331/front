@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const API_KEY = 'c214b5bcf15651b5b3150dd2cf7f0f5a';
+        const city = 'Seoul'; // 원하는 도시명
+        const lang = 'kr';    // 한국어 설정
+        const units = 'metric'; // 섭씨 온도를 위해 metric 사용
+
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=${lang}&units=${units}`;
+
+        async function getWeather() {
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.cod === 200) {
+                    console.log(`도시: ${data.name}`);
+                    console.log(`온도: ${data.main.temp}°C`);
+                    console.log(`날씨: ${data.weather[0].description}`);
+                    console.log(`습도: ${data.main.humidity}%`);
+                } else {
+                    console.error('데이터를 불러오지 못했습니다:', data.message);
+                }
+            } catch (error) {
+                console.error('네트워크 오류:', error);
+            }
+        }
+
+        getWeather();
+    </script>
+</body>
+
+</html>

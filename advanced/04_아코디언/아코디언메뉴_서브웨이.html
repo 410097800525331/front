@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서브웨이</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="css/menu-btn.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+        /* 초기화 */
+        * {box-sizing: border-box;}
+        body,ul {margin: 0;}
+        ul {list-style: none; padding:0;}
+        a {text-decoration: none; color: #333;}
+        body {
+            font: 0.938rem/1.6 "Noto Sans KR", sans-serif;
+            background: #fff;
+        }
+
+        /* 폰트어썸 */
+        /* px to rem: alt+z */
+        i {
+            color: #3e3a39;
+            font-size: 1.25rem;
+        }
+        header {
+            position: fixed;
+            top:0;
+            width: 100%;
+            height: 60px;
+            background: yellow;
+        }
+
+        /* 내비게이션 전체 */
+        header .inner {
+            position: absolute;
+            width: 80%;
+            right: -80%;
+            background: #fff;
+            transition: .3s;
+            /* 내비게이션 스크롤되게 지정 */
+            height: 100vh; overflow-y: auto;
+            padding-top: 80px;
+        }
+        header .inner.active {
+            right: 0;
+        }
+
+        /* 1depth */
+        .main>li {
+            border-bottom: 1px solid #d9d9d9;
+        }
+        .main>li.active {
+            background: #3e3a39;
+        }
+        .main>li>a {
+            position: relative;
+            display: block;
+            padding: 16px 24px;
+            font-size: 1rem;
+            color: #333;
+        }
+        .main>li.active>a {
+            color: #fed900;
+        }
+        /* 메인메뉴 끝 +모양 */
+        .main>li>a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right:39px;
+            width: 2px;
+            height: 10px;
+            background: #fed900;
+            transition: .3s;
+            opacity:1;
+        }
+        .main>li.active>a::before {
+            /* display: none; */
+            opacity:0;
+        }
+
+        .main>li>a::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right:35px;
+            width: 10px;
+            height: 2px;
+            background: #fed900;
+        }
+
+        /* 특정 메인메뉴 오른쪽 new 아이콘 */
+        .newIcon {
+            margin-left: 8px;
+        }
+
+        /* 2depth */
+        .sub-wrapper {
+            display: grid;
+            /* 초기 상태 높이 0 */
+            grid-template-rows: 0fr;
+            transition: .3s ease-out;
+            background: #f9f9f9;
+        }
+        .main>li.active .sub-wrapper {
+            grid-template-rows: 1fr;
+        }
+        .sub {
+            overflow: hidden;
+        }
+        .sub li:not(:last-child) {
+            border-bottom: 1px solid #eee;
+        }
+        .sub li a {
+            /* 위아래 패딩 적용을 위해 block 지정! */
+            display: block;
+            padding: 10px 30px;
+            font-size: 0.875rem;
+            color: #333;
+        }
+        .sub li a:hover {
+            background: #eee;
+        }
+
+        /* 유틸: SNS, 기타 */
+        header .util {
+            margin: 50px 0 0 20px;
+        }
+        /* 로그인 버튼 */
+        header .login {
+            margin: 16px 0 0 20px;
+        }
+        /* 로그인 아이콘 사이 구분자 */
+        header .login a:first-child::after {
+            content: " | ";
+            margin: 0 8px;
+            font-size: 0.75rem;
+            vertical-align: top;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <!-- Collapsed Menu Icon: 햄버거 메뉴 -->
+        <div class="mwrap">
+            <a class="menu-btn" href="#">
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+
+        <!-- GNB -->
+        <div class="inner">
+            <nav id="gnb">
+                <!-- 1depth -->
+                <ul class="main">
+                    <li><a href="#">메뉴소개</a>
+                        <!-- 2depth -->
+                        <div class="sub-wrapper">
+                            <ul class="sub">
+                                <li><a href="#">샌드위치</a></li>
+                                <li><a href="#">랩·기타</a></li>
+                                <li><a href="#">샐러드</a></li>
+                                <li><a href="#">아침메뉴</a></li>
+                                <li><a href="#">스마일 썹</a></li>
+                                <li><a href="#">단체메뉴</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">이용방법</a>
+                        <div class="sub-wrapper">
+                            <ul class="sub">
+                                <li><a href="#">써브웨이 이용방법</a></li>
+                                <li><a href="#">단체메뉴 이용방법</a></li>
+                                <li><a href="#">신선한 재료 소개</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">새소식</a>
+                        <div class="sub-wrapper">
+                            <ul class="sub">
+                                <li><a href="#">이벤트·프로모션</a></li>
+                                <li><a href="#">뉴스·공지사항</a></li>
+                                <li><a href="#">광고영상</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">써브웨이</a>
+                        <div class="sub-wrapper">
+                            <ul class="sub">
+                                <li><a href="#">써브웨이 역사</a></li>
+                                <li><a href="#">써브웨이 약속</a></li>
+                                <li><a href="#">매장찾기</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">가맹점<img src="assets/new.gif" alt="최근 소식" class="newIcon"></a>
+                        <div class="sub-wrapper">
+                            <ul class="sub">
+                                <li><a href="#">써브웨이 프랜차이즈</a></li>
+                                <li><a href="#">가맹관련 FAQ</a></li>
+                                <li><a href="#">가맹신청·문의</a></li>
+                                <li><a href="#">지사안내</a></li>
+                                <li><a href="#">사업설명회</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">온라인 주문</a>
+                        <div class="sub-wrapper">
+                            <ul class="sub">
+                                <li><a href="#">APP 주문</a></li>
+                                <li><a href="#">단체주문</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+
+            <div class="util">
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-app-store-ios"></i></a>
+                <a href="#"><i class="fa-brands fa-google-play"></i></a>
+                <a href="#"><i class="fa-regular fa-folder-open"></i></a>
+            </div>
+            <div class="login">
+                <a href="#"><i class="fa-solid fa-user"></i></a>
+                <a href="#"><i class="fa-solid fa-user-plus"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <script>
+        // 메뉴 전체
+        const navBody = document.querySelector(".inner");
+        // 메인 메뉴 li
+        const mainItems = document.querySelectorAll(".main > li");
+
+
+        // 1. 아코디언 메뉴 로직
+        mainItems.forEach(item => {
+            // 메인 메뉴의 a태그
+            const link = item.querySelector('a');
+            link.addEventListener('click', (e)=>{
+                // a태그의 링크 기능 제거
+                e.preventDefault();
+                // 다른 메뉴 닫기 (메뉴가 하나만 열리게)
+                mainItems.forEach(otherItem => {
+                    if (otherItem !== item) otherItem.classList.remove('active');
+                });
+
+                // 현재 메뉴 토글
+                item.classList.toggle('active');
+            });
+        });
+
+        // 2. 햄버거 버튼 로직 (반복문 적용)
+        // 햄버거 버튼
+        const mbtn = document.querySelector(".menu-btn");
+
+        mbtn.addEventListener('click', function(e){
+            e.preventDefault();
+            this.classList.toggle('active');
+            navBody.classList.toggle('active');
+
+            // 자식 span들 한꺼번에 제어
+            const spans = this.querySelectorAll('span');
+            spans.forEach(span => span.classList.toggle('active'));
+            this.parentElement.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>

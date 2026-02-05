@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>랜덤 보글보글 하트</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #fff; }
+        
+        .heart-container {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            font-size: 2rem;
+            padding: 20px;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            font-size: 18px;
+            pointer-events: none;
+            opacity: 0;
+            /* 하트마다 자바스크립트에서 지정할 --random-x 변수를 사용 */
+            animation: randomBubble 2s ease-out forwards;
+        }
+
+        @keyframes randomBubble {
+            0% {
+                transform: translate(-50%, 0) scale(0.5);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            /* 중간 지점에서 좌우 랜덤하게 흔들림 */
+            50% {
+                transform: translate(calc(-50% + var(--swing-x)), -40px) scale(1);
+            }
+            /* 마지막 지점에서도 랜덤하게 퍼짐 */
+            100% {
+                transform: translate(calc(-50% + var(--end-x)), -100px) scale(1.2);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="heart-container">랜덤 하트 발사!</div>
+
+    <script>
+        const container = document.querySelector('.heart-container');
+
+        container.addEventListener('mouseenter', () => {
+            for (let i = 0; i < 12; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('span');
+                    heart.className = 'heart';
+                    heart.textContent = '❤️';
+
+                    // 1. 하트마다 랜덤한 좌우 흔들림 폭 설정
+                    // --swing-x: 중간에 꺾이는 정도 (-30px ~ 30px)
+                    // --end-x: 최종 도달 위치 (-50px ~ 50px)
+                    const swingX = (Math.random() - 0.5) * 60 + 'px';
+                    const endX = (Math.random() - 0.5) * 100 + 'px';
+                    
+                    heart.style.setProperty('--swing-x', swingX);
+                    heart.style.setProperty('--end-x', endX);
+
+                    // 2. 초기 위치도 살짝 랜덤하게
+                    const startPos = (Math.random() - 0.5) * 40;
+                    heart.style.left = `calc(50% + ${startPos}px)`;
+
+                    // 3. 크기와 애니메이션 속도도 랜덤하게 (더 자연스러움)
+                    const duration = 1.5 + Math.random(); // 1.5s ~ 2.5s
+                    heart.style.animationDuration = `${duration}s`;
+                    heart.style.fontSize = (12 + Math.random() * 15) + 'px';
+
+                    container.appendChild(heart);
+
+                    heart.addEventListener('animationend', () => heart.remove());
+                }, i * 80);
+            }
+        });
+    </script>
+</body>
+</html>

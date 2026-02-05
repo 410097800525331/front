@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삼양식품 - Slick</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    
+    <style>
+        body { margin: 0; }
+
+        /* 슬라이더 영역 컨테이너 */
+        .slider-wrap {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .slider-wrap img {
+            width: 100%;
+            display: block;
+        }
+
+        /* 화살표 커스텀 CSS */
+        .slick-prev, .slick-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            width: 18px;
+            height: 30px;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            text-indent: -9999px; /* 글자 숨기기 */
+            cursor: pointer;
+        }
+
+        .slick-prev {
+            left: calc(50% - 620px);
+            background: url('assets/btn_slide_prev_new.png') no-repeat center/contain !important;
+        }
+
+        .slick-next {
+            right: calc(50% - 620px);
+            background: url('assets/btn_slide_next_new.png') no-repeat center/contain !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider-wrap">
+        <div class="slick-slider">
+            <div><img src="assets/20231214092231893897.jpg" alt="이미지1"></div>
+            <div><img src="assets/20231214092256522898.jpg" alt="이미지2"></div>
+            <div><img src="assets/20231214092418147899.jpg" alt="이미지3"></div>
+            <div><img src="assets/20231214092606468902.jpg" alt="이미지4"></div>
+            <div><img src="assets/20240116133051904008.jpg" alt="이미지5"></div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('.slick-slider').slick({
+                fade: true,            // bxSlider의 mode: 'fade'와 동일
+                autoplay: true,        // 자동 슬라이드
+                autoplaySpeed: 3000,   // 자동 전환 시간 (ms)
+                speed: 800,            // 애니메이션 속도
+                dots: false,           // 페이저(인디케이터) 미사용
+                arrows: true,          // 좌우 버튼 사용
+                pauseOnHover: true,    // 마우스 호버 시 멈춤
+                pauseOnFocus: true,    // 클릭 시 멈춤 (stopAutoOnClick 대용)
+                infinite: true         // 무한 반복
+            });
+        });
+    </script>
+</body>
+
+</html>

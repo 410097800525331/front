@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마우스 커서 & 잔상</title>
+    <style>
+        body {
+            height: 100vh;
+            background-color: #e0b6b6;
+            cursor: none; /* 실제 마우스는 숨깁니다 */
+        }
+
+        /* 1. 메인 커서 (점) */
+        .cursor {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out; /* 반응 속도 빠름 */
+            width: 12px;
+            height: 12px;
+            background-color: #000;
+            z-index: 1000;
+        }
+
+        .cursor::after {
+            content: 'View';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2px;
+            color: #fff;
+            opacity: 0; /* 평소엔 숨김 */
+        }
+
+        /* 2. 따라다니는 큰 원 (Follower) */
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            /* 메인 커서보다 느리게 설정하여 '쫀득한' 느낌을 줌 */
+            transition: transform 0.3s ease-out, left .15s ease-out, top .15s ease-out;
+            z-index: 999;
+        }
+
+        /* 링크에 올렸을 때의 변화 */
+        .cursor.active {
+            transform: translate(-50%, -50%) scale(5); /* 5배로 조절 */
+            background-color: #000;
+        }
+        .cursor.active::after {
+            opacity: 1; /* 커졌을 때 View 글자 보임 */
+        }
+
+        .cursor-follower.active {
+            transform: translate(-50%, -50%) scale(1.5);
+            opacity: 0.3; /* 잔상은 커지면서 투명해짐 */
+        }
+    </style>
+</head>
+
+<body>
+    <h1><a href="#">링크 요소입니다.</a></h1>
+    
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div> <script>
+        const cursor = document.querySelector('.cursor');
+        const follower = document.querySelector('.cursor-follower');
+        const links = document.querySelectorAll('a');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // 두 요소 모두 마우스 위치로 이동
+            cursor.style.left = `${posX}px`;
+            cursor.style.top = `${posY}px`;
+
+            follower.style.left = `${posX}px`;
+            follower.style.top = `${posY}px`;
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.classList.add('active');
+                follower.classList.add('active');
+            });
+
+            link.addEventListener('mouseleave', () => {
+                cursor.classList.remove('active');
+                follower.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가로 스크롤 페이지 - Vegas2</title>
+
+    <!-- Vegas CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.css">
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            /* 전체 페이지 스크롤 방지 */
+            font-family: 'Open Sans', sans-serif;
+            /* 베가스 데모 느낌 폰트 */
+        }
+
+        #scroll-container {
+            width: 100vw;
+            height: 100vh;
+            overflow-x: auto;
+            /* 가로 스크롤바 표시 */
+            overflow-y: hidden;
+            white-space: nowrap;
+            /* 자식 요소 줄바꿈 방지 */
+
+            /* 스크롤바 스타일 */
+            scrollbar-width: thin;
+            scrollbar-color: rgba(158, 161, 161, 0.502) transparent;
+        }
+
+        #scroll-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        #scroll-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #scroll-container::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 4px;
+        }
+
+        #scroll-container::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .horizontal-wrap {
+            display: inline-flex;
+            /* width: max-content; */
+            height: 100%;
+        }
+
+        .page {
+            width: 100vw;
+            height: 100vh;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            color: #fff;
+            font-weight: bold;
+            vertical-align: top;
+            position: relative;
+        }
+
+        /* Page 1은 Vegas 배경이 들어가므로 기본 배경색 제거/조정 */
+        .page1 {
+            background: #333;
+            /* 로딩 전 배경 */
+            position: relative;
+            /* 자식 요소 절대 위치 기준 */
+        }
+
+        /* Vegas 오버레이 패턴 명시적 지정 (CDN 사용) */
+        .vegas-overlay {
+            background-image: url('https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/overlays/06.png');
+            opacity: 0.5;
+            /* 오버레이 강도 조절 */
+        }
+
+        .page2 {
+            background: #4d96ff;
+        }
+
+        .page3 {
+            background: #6bcf63;
+        }
+
+        .page4 {
+            background: #ffc93c;
+        }
+
+        /* 데모 텍스트 스타일 */
+        .demo-content {
+            text-align: center;
+            z-index: 10;
+            /* 배경보다 위에 표시 */
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+            /* 클릭 통과 */
+        }
+
+        .demo-content h1 {
+            width: 100vw;
+            font-size: 80px;
+            margin: 0;
+            letter-spacing: -2px;
+        }
+
+        .demo-content p {
+            font-size: 24px;
+            font-weight: 300;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        /* Sin City 스타일 네비게이션 */
+        .sin-city-nav {
+            position: absolute;
+            bottom: 150px;
+            /* 위치 조정 (더 구석으로) */
+            right: 150px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            text-align: right;
+            font-family: 'Open Sans', 'sans-serif';
+        }
+
+        /* 텍스트 리스트 */
+        .nav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            /* 간격 살짝 증가 */
+            transform: rotate(7deg);
+        }
+
+        .nav-list a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+            cursor: pointer;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .nav-list a:hover {
+            color: #e50914;
+            /* Sin City Red */
+            transform: translateX(-5px);
+        }
+
+        .nav-list a.active {
+            color: #e50914;
+            font-size: 32px;
+        }
+
+        /* 폴라로이드 컨테이너 */
+        .polaroid {
+            position: relative;
+            width: auto;
+            padding: 15px;
+            background: #fff;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+            transform: rotate(7deg);
+            /* Sin City 데모와 유사한 각도 (45도는 너무 과함) */
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.05);
+            z-index: 30;
+        }
+
+        /* Vegas 슬라이드쇼가 들어갈 스크린 영역 */
+        .polaroid-screen {
+            width: 300px;
+            /* 포스터 비율 (2:3) 가로 */
+            height: 450px;
+            /* 포스터 비율 (2:3) 세로 */
+            background: #000;
+            overflow: hidden;
+        }
+
+        /* Vegas 내부 이미지 'contain' 처리 (짤림 방지 핵심) */
+        .polaroid-screen .vegas-slide-inner {
+            background-size: cover !important;
+            /* 포스터가 꽉 차게 (cover가 일반적) */
+            background-position: center top !important;
+            /* 얼굴 위주 */
+        }
+
+        /* 캡션 */
+        .polaroid .caption {
+            color: #000;
+            font-size: 22px;
+            font-weight: 900;
+            text-align: center;
+            margin-top: 15px;
+            font-family: 'Arial Black', sans-serif;
+            /* 더 굵은 폰트 */
+            text-transform: uppercase;
+            white-space: nowrap;
+            letter-spacing: -1px;
+        }
+    </style>
+
+    <!-- jQuery & Vegas JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // 슬라이드 데이터 (Verified Unsplash Noir Collection)
+            // 멈춤 현상 방지를 위해 검증된 새로운 이미지 세트로 교체
+            const slideData = [
+                {
+                    // Nancy (Jessica Alba Style - Silhouette/Dancing)
+                    src: 'https://images.unsplash.com/photo-1570215779374-2782b6c68383?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80',
+                    label: 'NANCY',
+                    poster: 'https://images.unsplash.com/photo-1570215779374-2782b6c68383?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
+                },
+                {
+                    // Marv (Mickey Rourke Style - Rough/Scarred)
+                    src: 'https://images.unsplash.com/photo-1535581652167-3d6b98c253b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80',
+                    label: 'MARV',
+                    poster: 'https://images.unsplash.com/photo-1535581652167-3d6b98c253b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
+                },
+                {
+                    // Dwight (Josh Brolin Style - Intense Stare/Rain)
+                    src: 'https://images.unsplash.com/photo-1616790876844-97c0c6057364?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80',
+                    label: 'DWIGHT',
+                    poster: 'https://images.unsplash.com/photo-1616790876844-97c0c6057364?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
+                },
+                {
+                    // Ava Lord (Femme Fatale/Smoke)
+                    src: 'https://images.unsplash.com/photo-1550926715-c2668580c793?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80',
+                    label: 'AVA LORD',
+                    poster: 'https://images.unsplash.com/photo-1550926715-c2668580c793?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
+                }
+            ];
+
+            // 데이터 유효성 체크
+            if (!slideData || slideData.length === 0) {
+                console.error("Slide data is missing!");
+            }
+
+            // 1. 배경용 (Main)
+            const mainSlides = slideData.map(item => ({ src: item.src }));
+
+            // 2. 작은 이미지용 (Poster) - 세로형
+            const miniSlides = slideData.map(item => ({ src: item.poster }));
+
+            // --- Main Page Vegas (Fade 효과) ---
+            $(".page1").vegas({
+                delay: 7000,
+                timer: false,
+                shuffle: false,
+                firstTransition: 'fade',
+                firstTransitionDuration: 5000,
+                transition: 'fade', // 요청: 페이드인 아웃
+                transitionDuration: 2000,
+                slides: mainSlides,
+                overlay: 'https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/overlays/06.png',
+                animation: 'kenburns', // 배경은 켄번 효과 유지 (부드럽게)
+
+                // 슬라이드 변경 시 콜백
+                walk: function (index, slideSettings) {
+                    // 메뉴 활성화
+                    $('.nav-list a').removeClass('active');
+                    $('.nav-list a').eq(index).addClass('active');
+
+                    // 캡션 업데이트
+                    $('#polaroid-caption').text(slideData[index].label);
+
+                    // 작은 슬라이드쇼도 같이 이동 (싱크 맞추기)
+                    // 현재 인덱스로 점프. 
+                    // 주의: 무한 루프 방지를 위해 체크가 필요할 수 있으나, 
+                    // 외부 트리거로 인한 jump는 walk를 유발하지만, 
+                    // 어차피 main이 master이므로 main의 walk에서 mini를 제어.
+                    $(".polaroid-screen").vegas('jump', index);
+                }
+            });
+
+            // --- Mini Vegas (Swirl/Rotation 효과) ---
+            $(".polaroid-screen").vegas({
+                delay: 7000, // Main과 동일하게
+                timer: false,
+                shuffle: false,
+                firstTransition: 'fade', // 첫 등장은 부드럽게
+                transition: 'swirlLeft2', // 요청: 큰 이미지의 회전 애니메이션 적용
+                transitionDuration: 2000,
+                slides: miniSlides,
+                animation: 'random', // 작은 이미지도 약간 움직임 추가
+                autoplay: false // Main이 제어하므로 자동 재생은 끔 (싱크 어긋남 방지)
+            });
+
+            // 텍스트 메뉴 클릭 이벤트
+            $('.nav-list a').on('click', function (e) {
+                e.preventDefault();
+                var idx = $(this).data('index');
+
+                // 클릭 시 Main을 점프시키면 -> Main의 walk가 실행됨 -> Mini도 점프됨.
+                $(".page1").vegas('jump', idx);
+            });
+
+            // 메뉴 호버 시 폴라로이드 흔들림 효과
+            $('.nav-list a').hover(function () {
+                // 호버 시 흔들림 (기본 7도에서 흔들림)
+                var randomAngle = (Math.random() * 10 + 2).toFixed(2); // 2~12도
+                $('.polaroid').css('transform', `rotate(${randomAngle}deg) scale(1.05)`);
+            }, function () {
+                $('.polaroid').css('transform', 'rotate(7deg) scale(1)');
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <main id="scroll-container">
+        <div class="horizontal-wrap">
+            <!-- Page 1: Vegas Background -->
+            <section class="page page1">
+                <div class="demo-content">
+                    <h1>Vegas 2</h1>
+                    <p>Background slideshow demo</p>
+                </div>
+
+                <!-- Sin City 스타일 네비게이션 (Red Box Part) -->
+                <div class="sin-city-nav">
+                    <!-- 텍스트 리스트 -->
+                    <div class="nav-list">
+                        <a data-index="0">JESSICA ALBA</a>
+                        <a data-index="1">MICKEY ROURKE</a>
+                        <a data-index="2">JOSH BROLIN</a>
+                        <a data-index="3" class="active">EVA GREEN</a>
+                    </div>
+
+                    <!-- 폴라로이드 컨테이너 -->
+                    <div class="polaroid">
+                        <!-- Vegas 슬라이드쇼가 실행될 영역 -->
+                        <div class="polaroid-screen"></div>
+                        <div id="polaroid-caption" class="caption">NAME</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page page2">Page 2</section>
+            <section class="page page3">Page 3</section>
+            <section class="page page4">Page 4</section>
+        </div>
+    </main>
+
+    <script>
+        // --- 스크롤 로직 (기존 유지) ---
+        const container = document.getElementById('scroll-container');
+        let target = container.scrollLeft;
+        let current = target;
+        let isMoving = false;
+
+        container.addEventListener("wheel", e => {
+            e.preventDefault();
+            if (!isMoving) target = current = container.scrollLeft;
+            target = Math.max(0, Math.min(container.scrollWidth - container.clientWidth, target + e.deltaY));
+            if (!isMoving) {
+                isMoving = true;
+                scrollAnimate();
+            }
+        }, { passive: false });
+
+        function scrollAnimate() {
+            current += (target - current) * 0.05;
+            container.scrollLeft = current;
+            if (Math.abs(target - current) < 0.5) {
+                isMoving = false;
+            } else {
+                requestAnimationFrame(scrollAnimate);
+            }
+        }
+    </script>
+</body>
+
+</html>

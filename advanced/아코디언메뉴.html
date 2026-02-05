@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>아코디언 UI</title>
+<style>
+  .accordion-item { border-bottom: 1px solid #ccc; }
+  .accordion-title { padding: 15px; cursor: pointer; background: #f0f0f0; }
+  .accordion-content { display: none; padding: 15px; background: #fafafa; }
+  .accordion-title.active { background: royalblue; color: white; }
+</style>
+</head>
+<body>
+
+<h2>아코디언 UI</h2>
+
+<div class="accordion">
+  <div class="accordion-item">
+    <div class="accordion-title">Q1. Lorem ipsum?</div>
+    <div class="accordion-content">내용 1 입니다.</div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-title">Q2. dolor sit amet?</div>
+    <div class="accordion-content">내용 2 입니다.</div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-title">Q3. consectetur adipiscing?</div>
+    <div class="accordion-content">내용 3 입니다.</div>
+  </div>
+</div>
+
+<script>
+  const titles = document.querySelectorAll(".accordion-title");
+
+  titles.forEach(title => {
+    title.addEventListener("click", function () {
+
+      // 이미 열려 있는 title 모두 닫기
+      titles.forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".accordion-content")
+              .forEach(c => c.style.display = "none");
+
+      // 클릭된 title 활성화
+      this.classList.add("active");
+
+      // 제목 바로 다음 형제요소 → 내용 패널
+      const content = this.nextElementSibling;
+      content.style.display = "block";
+    });
+  });
+</script>
+
+</body>
+</html>

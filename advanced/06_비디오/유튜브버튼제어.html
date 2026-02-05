@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>YouTube Custom Player</title>
+</head>
+
+<body>
+
+<div id="player"></div>
+
+<button id="playBtn" disabled>재생</button>
+<button id="pauseBtn" disabled>일시정지</button>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+let player;
+let isReady = false;
+
+function onYouTubeIframeAPIReady() {
+  console.log('iframe api ready');
+
+  player = new YT.Player('player', {
+    videoId: 'qW19oOVSmi0',
+    playerVars: {
+        autoplay: 0,
+        controls: 0,          // 재생바 숨김
+        rel: 0,               // 관련 영상 숨김
+        modestbranding: 1,    // 유튜브 로고 최소화
+        fs: 0,                // 전체화면 버튼 숨김
+        disablekb: 1,         // 키보드 제어 비활성화
+        iv_load_policy: 3,    // 영상 내 주석 숨김
+        playsinline: 1        // 모바일 전체화면 방지
+    },
+    events: {
+      onReady: () => {
+        console.log('player ready');
+        isReady = true;
+        document.getElementById('playBtn').disabled = false;
+        document.getElementById('pauseBtn').disabled = false;
+      }
+    }
+  });
+}
+
+document.getElementById('playBtn').onclick = () => {
+  if (!isReady) return;
+  player.playVideo();
+};
+
+document.getElementById('pauseBtn').onclick = () => {
+  if (!isReady) return;
+  player.pauseVideo();
+};
+</script>
+
+</body>
+</html>
