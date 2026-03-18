@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>노티드</title>
+  <link rel="icon" href="8c5d3a6a2f1e2.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/knotted.css">
+
+  <!-- JS libraries -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- init -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      AOS.init();
+    });
+  </script>
+
+  <!-- custom JS -->
+  <script src="/js/common.js"></script>
+</head>
+
+<body>
+  <div class="content user"></div>
+  <header class="header"></header>
+  <section class="content">
+    <main class="main_swiper">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="/assets/images/slide1.png" alt="슬라이드 이미지"></div>
+          <div class="swiper-slide"><img src="/assets/images/slide2.png" alt="슬라이드 이미지"></div>
+          <div class="swiper-slide"><img src="/assets/images/slide3.jpg" alt="슬라이드 이미지"></div>
+          <div class="swiper-slide"><img src="/assets/images/slide4.jpg" alt="슬라이드 이미지"></div>
+          <div class="swiper-slide"><img src="/assets/images/slide5.jpg" alt="슬라이드 이미지"></div>
+          <div class="swiper-slide"><img src="/assets/images/slide6.jpg" alt="슬라이드 이미지"></div>
+          <div class="swiper-slide"><img src="/assets/images/slide7.jpg" alt="슬라이드 이미지"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </main>
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+        mousewheel: {
+          forceToAxis: true,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+    </script>
+    <div class="ticker_wrap">
+      <div class="ticker_track">
+        <div class="ticker_inner">
+          <span>Premium Cake, Donut, and Dessert Cafe</span>
+          <b>knotted</b>
+          <span>☺</span>
+          <span>Premium Cake, Donut, and Dessert Cafe</span>
+          <b>knotted</b>
+          <span>☺</span>
+          <span>Premium Cake, Donut, and Dessert Cafe</span>
+          <b>knotted</b>
+          <span>☺</span>
+          <span>Premium Cake, Donut, and Dessert Cafe</span>
+          <b>knotted</b>
+          <span>☺</span>
+        </div>
+        <div class="ticker_inner">
+          <span>Premium Cake, Donut, and Dessert Cafe</span>
+          <b>knotted</b>
+          <span>☺</span>
+          <span>Premium Cake, Donut, and Dessert Cafe</span>
+          <b>knotted</b>
+          <span>☺</span>
+          <span>Premium Cake, Donut, and Dessert Cafe</span>
+          <b>knotted</b>
+          <span>☺</span>
+          <span>Premium Cake, Donut, and Dessert Cafe</span>
+          <b>knotted</b>
+          <span>☺</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content" data-aos="fade-right" data-aos-duration="3000">
+    <div class="best_inner">
+      <div class="best_menu_text">
+        <h1>Best Donut</h1>
+        <p>노티드가 엄선한 가장 HOT한 도넛!</p>
+        <ul class="best_menu_list">
+          <li class="is_active">얼그레이 도넛</li>
+          <li>레몬 슈가 도넛</li>
+          <li>저당 크림 도넛</li>
+          <li>저당 초코 크림 도넛</li>
+          <li>초코 푸딩 도넛</li>
+          <li>클래식 바닐라 도넛</li>
+          <li>라즈베리 도넛</li>
+        </ul>
+        <div class="best_menu_nav">
+          <button class="best_menu_prev" aria-label="이전"></button>
+          <button class="best_menu_next" aria-label="다음"></button>
+        </div>
+      </div>
+      <div class="best_menu_swiper_wrap">
+        <div class="swiper best_menu_swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="/assets/images/bastdount1.png" alt="얼그레이 도넛">
+              <h4>얼그레이 도넛</h4>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/images/bastdount2.png" alt="레몬 슈가 도넛">
+              <h4>레몬 슈가 도넛</h4>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/images/bastdount3.png" alt="저당 크림 도넛">
+              <h4>저당 크림 도넛</h4>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/images/bastdount4.png" alt="저당 초코 크림 도넛">
+              <h4>저당 초코 크림 도넛</h4>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/images/bastdount5.png" alt="초코 푸딩 도넛">
+              <h4>초코 푸딩 도넛</h4>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/images/bastdount6.png" alt="클래식 바닐라 도넛">
+              <h4>클래식 바닐라 도넛</h4>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/images/bastdonut7.png" alt="라즈베리 도넛">
+              <h4>라즈베리 도넛</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  <section class="content" data-aos="fade-right" data-aos-duration="3000">
+    <div class="best_inner">
+      <div class="best_menu_text">
+        <h1>Best Cake</h1>
+        <p>노티드가 엄선한 가장 HOT한 케이크!</p>
+        <ul class="best_menu_list">
+          <li class="is_active">옐로우 스마일 케이크</li>
+          <li>밀크 데이지 케이크</li>
+          <li>초코 가나슈</li>
+          <li>생딸기 생크림</li>
+          <li>생딸기 초코 가든 케이크</li>
+          <li>화이트 슈가베어</li>
+          <li>코지 니트 슈가베어</li>
+        </ul>
+        <div class="best_menu_nav">
+          <button class="best_menu_prev" aria-label="이전"></button>
+          <button class="best_menu_next" aria-label="다음"></button>
+        </div>
+      </div>
+      <div class="best_menu_swiper_wrap">
+        <div class="swiper best_menu_swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="/assets/images/bastcake1.png" alt="옐로우 스마일 케이크">
+              <h4>옐로우 스마일 케이크</h4>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/images/bastcake2.png" alt="밀크 데이지 케이크">
+              <h4>밀크 데이지 케이크</h4>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/images/bastcake3.png" alt="초코 가나슈">
+              <h4>초코 가나슈</h4>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/images/bastcake4.png" alt="생딸기 생크림">
+              <h4>생딸기 생크림</h4>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/images/bastcake5.png" alt="생딸기 초코 가든 케이크">
+              <h4>생딸기 초코 가든 케이크</h4>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/images/bastcake6.png" alt="화이트 슈가베어">
+              <h4>화이트 슈가베어</h4>
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/images/bastcake7.png" alt="코지 니트 슈가베어">
+              <h4>코지 니트 슈가베어</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  <script>
+    document.querySelectorAll(".content").forEach((section) => {
+      const swiperEl = section.querySelector(".best_menu_swiper");
+      const listItems = section.querySelectorAll(".best_menu_list li");
+      const prevBtn = section.querySelector(".best_menu_prev");
+      const nextBtn = section.querySelector(".best_menu_next");
+
+      const swiper = new Swiper(swiperEl, {
+        slidesPerView: 3,
+        spaceBetween: 24,
+        speed: 1000,
+        loop: true,
+
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
+
+        navigation: {
+          nextEl: nextBtn,
+          prevEl: prevBtn,
+        },
+
+        breakpoints: {
+          1024: { slidesPerView: 3.5 },
+          768: { slidesPerView: 2.5 },
+          576: { slidesPerView: 1.2 },
+        },
+
+        on: {
+          slideChange: function () {
+            const realIndex = this.realIndex;
+
+            listItems.forEach((li) => li.classList.remove("is_active"));
+            if (listItems[realIndex]) {
+              listItems[realIndex].classList.add("is_active");
+            }
+          },
+        },
+      });
+    });
+  </script>
+
+  <section class="content" data-aos="fade-up" data-aos-duration="2000">
+    <div class="insta_inner">
+      <h1>Instagram</h1>
+      <p>@cafeknotted_kr</p>
+      <div class="swiper insta_swiper">
+        <a href="https://www.instagram.com/cafeknotted_kr/" target="_blank" class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="/assets/images/instar1.jpg" alt="인스타 이미지 1">
+          </div>
+          <div class="swiper-slide">
+            <img src="/assets/images/instar2.jpg" alt="인스타 이미지 2">
+          </div>
+          <div class="swiper-slide">
+            <img src="/assets/images/instar3.jpg" alt="인스타 이미지 3">
+          </div>
+          <div class="swiper-slide">
+            <img src="/assets/images/instar4.jpg" alt="인스타 이미지 4">
+          </div>
+          <div class="swiper-slide">
+            <img src="/assets/images/instar5.jpg" alt="인스타 이미지 5">
+          </div>
+          <div class="swiper-slide">
+            <img src="/assets/images/instar6.jpg" alt="인스타 이미지 6">
+          </div>
+          <div class="swiper-slide">
+            <img src="/assets/images/instar7.jpg" alt="인스타 이미지 7">
+          </div>
+          <div class="swiper-slide">
+            <img src="/assets/images/instar8.jpg" alt="인스타 이미지 8">
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <script>
+    const instaSwiper = new Swiper(".insta_swiper", {
+      slidesPerView: 5,
+      spaceBetween: 16,
+      speed: 800,
+      loop: true,
+
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+
+      breakpoints: {
+        1024: { slidesPerView: 4 },
+        768: { slidesPerView: 3 },
+        576: { slidesPerView: 2 },
+      },
+    });
+  </script>
+  <footer class="footer"></footer>
+</body>
+
+</html>

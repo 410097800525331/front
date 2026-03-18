@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sageMusic</title>
+  <link rel="ico" href="favicon.svg" />
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/library.css">
+</head>
+
+<body>
+  <section class="layout">
+    <!-- Left Sidebar -->
+    <div class="left_sidebar"></div>
+    <!-- Main -->
+    <main class="main">
+      <!-- Top -->
+      <div class="top"></div>
+      <section class="hero">
+        <div class="hero_cover"></div>
+        <div class="hero_info">
+          <h2>Sleep 4ever</h2>
+          <p>Releases for you</p>
+          <div class="track"><span>Sleep 4ever</span><span>2:42</span></div>
+          <div class="track"><span>ever of broken hearts</span><span>2:51</span></div>
+          <div class="track"><span>if i were u</span><span>3:06</span></div>
+          <div class="track"><span>hot girl bummer</span><span>3:08</span></div>
+        </div>
+      </section>
+      <!-- Playlist -->
+      <section class="playlist_section">
+        <h2>Your Favorite Playlist</h2>
+        <!-- playlist.js -->
+        <div class="playlist_card_grid"></div>
+      </section>
+      <!-- By Genre -->
+      <section class="byGenre_section">
+        <h2>Playlist By Genre</h2>
+        <!-- By Genre.js -->
+        <div class="byGenre_card_grid"></div>
+      </section>
+    </main>
+    <!-- Right Sidebar -->
+    <!-- <aside class="right_sidebar">
+      <h1>Music Playing</h1>
+    </aside> -->
+    <!-- Player Bar -->
+    <!-- <div class="player_bar"></div> -->
+  </section>
+  <div class="player_bar"></div>
+  
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/js/sign.js"></script>
+  <script src="/js/include.js"></script>
+  <script src="/js/playerbar.js"></script>
+  <script src="/js/playlistcardData.js"></script>
+  <script src="/js/playlistcard.js"></script>
+</body>
+
+</html>

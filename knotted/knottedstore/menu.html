@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>노티드</title>
+  <link rel="icon" href="8c5d3a6a2f1e2.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/knotted.css">
+  <link rel="stylesheet" href="/css/shop_menu_event.css">
+
+  <!-- JS libraries -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- init -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      AOS.init();
+    });
+  </script>
+
+  <!-- custom JS -->
+  <script src="/js/common.js"></script>
+  <script src="/js/menuData.js"></script>
+  <script src="/js/menu.js"></script>
+</head>
+
+
+<body>
+  <div class="content user"></div>
+  <div class="header"></div>
+  <section>
+    <div class="content menu_wrap">
+      <div class="menu_category" id="category_bg">
+        <div class="category_inner">
+          <div class="category_list">
+            <div class="category_item is_active" data-category="all">ALL</div>
+            <div class="category_item" data-category="donut">DONUT</div>
+            <div class="category_item" data-category="bakepy">BAKEPY</div>
+            <div class="category_item" data-category="cake">CAKE</div>
+            <div class="category_item" data-category="beverage" data-type="parent">BEVERAGE</div>
+
+            <div class="category_item beverage" data-category="beverage" data-sub="signature">Signature</div>
+            <div class="category_item beverage" data-category="beverage" data-sub="coffee">Coffee</div>
+            <div class="category_item beverage" data-category="beverage" data-sub="tea">Tea</div>
+            <div class="category_item beverage" data-category="beverage" data-sub="noncoffee">Non-Coffee</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu_content">
+        <div class="menu_grid"></div>
+      </div>
+    </div>
+
+    <!-- 상세 이미지 모달 -->
+    <div class="image_modal" id="image_modal">
+      <div class="image_dim"></div>
+      <div class="image_modal_content">
+        <button class="image_close">×</button>
+        <img src="" alt="상세 이미지" id="image_modal_img">
+      </div>
+    </div>
+
+  </section>
+  <div class="footer"></div>
+</body>
+
+</html>

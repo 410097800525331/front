@@ -1,0 +1,158 @@
+@charset "utf-8";
+@font-face {
+  font-family: 'NanumSquareRound';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+  font-weight: normal;
+  font-display: swap;
+}
+
+:root {
+  --mango-0: #fdfaf7;
+  --mango-50: #FFF0A0;
+  --raspberry-z: #fecdd333;
+  --raspberry-0: #FECDD3;
+  --raspberry-50: #EE9DC2;
+  --slate-0: #ddd;
+  --slate-50: #acacac;
+  --slate-100: #3c3c3c;
+}
+body {
+  font: 16px/1.8 'NanumSquareRound', sans-serif;
+  color: var(--slate-100);
+}
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.highlight {
+  display: inline;
+  background-image: linear-gradient(transparent 60%, var(--raspberry-z) 60%);
+  margin-bottom: 40px;
+}
+.highlight2 {
+  display: inline;
+  background-image: linear-gradient(transparent 60%, var(--mango-50) 60%);
+  margin-bottom: 40px;
+}
+
+/* BUTTON */
+.btn {
+  width: 100%;
+  padding: 12px 0;
+  color: #fff;
+  background: var(--raspberry-50);
+}
+.btn_w {
+  position: relative;
+  display: inline-block;
+  padding: 10px 34px;
+  margin: 16px 8px;
+  font-weight: 500;
+  color: var(--raspberry-50);
+  border: 1px solid var(--raspberry-50);
+  background: linear-gradient(to right,
+      var(--raspberry-50) 50%,
+      transparent 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: background-position 0.4s ease,
+    color 0.3s ease;
+}
+.btn_w:hover {
+  background-position: left bottom;
+  color: #fff;
+}
+@media (max-width: 850px) {
+  section {
+    margin: 0 auto;
+  }
+  .btn_w {
+    width: 100%;
+    font-size: 1.1rem;
+  }
+}
+
+/* reset */
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+div,
+span,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre,
+a,
+img,
+strong,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+tr,
+th,
+td,
+footer,
+header,
+nav,
+section,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+ol,
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: var(--slate-100);
+}
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  vertical-align: middle;
+}
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+input {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+address {
+  font-style: normal;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>노티드</title>
+  <link rel="icon" href="8c5d3a6a2f1e2.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/knotted.css">
+  <link rel="stylesheet" href="/css/shop_menu_event.css">
+
+  <!-- JS libraries -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- init -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      AOS.init();
+    });
+  </script>
+
+  <!-- custom JS -->
+  <script src="/js/common.js"></script>
+  <script src="/js/shopData.js"></script>
+  <script src="/js/shop.js"></script>
+</head>
+
+
+<body>
+  <div class="content user"></div>
+  <div class="header"></div>
+  <section>
+    <div class="content shop_wrap">
+      <div class="shop_category" id="category_bg">
+        <div class="category_inner">
+          <div class="category_list">
+            <div class="category_item is_active" data-category="all">전체</div>
+            <div class="category_item" data-category="food">푸드</div>
+            <!-- 푸드 -->
+            <div class="category_item food" data-category="food" data-sub="dessert">디저트</div>
+            <div class="category_item food" data-category="food" data-sub="candy">초콜릿/캔디</div>
+            <div class="category_item food" data-category="food" data-sub="beverage">커피/음료</div>
+            <div class="category_item food" data-category="food" data-sub="vitamin">비타민</div>
+            <div class="category_item" data-category="living">리빙</div>
+            <!-- 리빙 -->
+            <div class="category_item living" data-category="living" data-sub="party">파티용품</div>
+            <div class="category_item living" data-category="living" data-sub="phrase">문구</div>
+            <div class="category_item living" data-category="living" data-sub="home">홈데코/키친</div>
+            <div class="category_item living" data-category="living" data-sub="outdoor">아웃도어</div>
+            <a href="/knottedstore/bulk-order.html" class="category_item">대량주문</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="shop_content">
+        <div class="shop_grid"></div>
+      </div>
+    </div>
+  </section>
+  <div class="footer"></div>
+</body>
+
+</html>

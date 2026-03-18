@@ -1,0 +1,243 @@
+@charset 'utf-8';
+@import url(reset.css);
+@import url(sign.css);
+@import url(include.css);
+@import url(playerbar.css);
+
+#layout {
+  grid-template-columns: 1fr;
+}
+/* .layout {
+  display: grid;
+  grid-template-columns: 240px 1fr 300px;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+  transition: grid-template-columns 0.3s ease;
+}
+.layout.sidebar_collapsed {
+  grid-template-columns: 64px 1fr;
+} */
+ 
+/* main */
+.main {
+  display: flex;
+  flex-direction: column;
+  /* gap: 24px; */
+  transition: transform 0.3s ease;
+}
+.main img {
+  width: 100%;
+  height: 100vh;
+}
+/* login join */
+.sign_modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+#sign_up_modal {
+  display: none;
+  height: 450px;
+}
+.sign_modal_content {
+  position: relative;
+  width: 600px;
+  height: 400px;
+  padding: 70px 40px;
+  background: rgba(210, 221, 233, 0.9);
+  border-radius: var(--radius-sm);
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#sign_up_modal .signup_modal {
+  padding: 30px 40px;
+}
+.sign_modal_content h2 {
+  margin-bottom: 24px;
+  color: var(--l1);
+  letter-spacing: 3px;
+}
+.login_form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  background: var(--l2);
+  border-radius: var(--radius-sm);
+}
+.sign_submit_btn {
+  width: 100%;
+  padding: 12px;
+  margin: 16px 0;
+  font-weight: bold;
+  background: var(--d3);
+  color: var(--l3);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.sign_submit_btn:hover {
+  background: var(--d2);
+}
+.sign_switch {
+  margin-top: 16px;
+  text-align: center;
+}
+.sign_switch a {
+  text-decoration: underline;
+}
+
+/* Home */
+.images {
+  position: relative;
+}
+.images_item img {
+  position: absolute;
+  cursor: pointer;
+}
+.images_item .rowoon_img {
+  top: 75vh;
+  left: 50vh;
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  animation: jump 5s infinite ease-in-out;
+}
+@keyframes jump {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-40px);
+  }
+}
+.images_item .leo_img {
+  top: 64vh;
+  right: 45vh;
+  width: 350px;
+  height: 350px;
+  object-fit: contain;
+  animation: jump2 5s infinite ease-in-out;
+}
+@keyframes jump2 {
+  0%,
+  100% {
+    transform: translateY(-30px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+}
+
+.images_item .pet_card {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  /* 숨길 때 클릭 막기 */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+}
+.rowoon .pet_card {
+  top: 260px;
+  left: 340px;
+}
+.leo .pet_card {
+  top: 160px;
+  right: 380px;
+}
+.images_item .rowoon:hover .pet_card,
+.images_item .leo:hover .pet_card {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.pet_card {
+  position: relative;
+  display: flex;
+  width: 380px;
+  padding: 16px 10px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+.pet_card::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 14px solid #fff; 
+}
+.pet_info {
+  flex: 1;
+}
+.pet_detail {
+  margin-top: 16px;
+}
+.pet_detail li {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dashed #ccc;
+}
+.pet_detail li span {
+  color: #777;
+}
+.pet_detail .health {
+  border-bottom: none;
+}
+/* 모바일에서는 항상 표시 */
+/* @media (max-width: 768px) {
+  .images_item .pet_card {
+    opacity: 1;
+    transform: translateY(0);
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+}
+@media (max-width: 768px) {
+  .pet_card {
+    flex-direction: column;
+    width: 100%;
+  }
+  .pet_image {
+    width: 100%;
+    height: 220px;
+  }
+  .pet_info {
+    margin-left: 0;
+    margin-top: 16px;
+  }
+} */
+
+/*  */
+.images_item .link1 {
+  top: 27vh;
+  right: 49vh;
+  width: 370px;
+  height: 370px;
+  object-fit: contain;
+  transform-origin: center center;
+  transition: 1s;
+  /* animation: carousel_rotate 18s linear infinite; */
+}
+.images_item .link1:hover {
+  transform: scale(1.1);
+}
+/* 회전 */
+@keyframes carousel_rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

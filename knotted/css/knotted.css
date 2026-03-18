@@ -1,0 +1,223 @@
+@charset "utf-8";
+@import url(reset.css);
+@import url(common.css);
+@import url(user.css);
+
+.content {
+  max-width: 1700px;
+  margin-left: 200px;
+  padding: 16px;
+}
+/* 배너 슬라이드 */
+.main_swiper {
+  position: relative;
+  height: 800px;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+  border-radius: 24px 24px 0 0;
+}
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-main_swiper img {
+  display: block;
+  filter: brightness(0.85) grayscale(0.2);
+}
+.mySwiper .swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  align-self: flex-end;
+}
+.mySwiper .swiper-pagination-bullet-active {
+  width: 20px;
+  background: var(--mango-50);
+}
+
+/* 트랙 */
+.ticker_wrap {
+  width: 100%;
+  overflow: hidden;
+  background: var(--mango-50);
+  border-radius: 0 0 24px 24px;
+}
+.ticker_track {
+  display: flex;
+  width: max-content;
+  animation: ticker_move 30s linear infinite;
+}
+/* .ticker_wrap:hover .ticker_track {
+  animation-play-state: paused;
+} */
+.ticker_inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 8px 0;
+}
+.ticker_inner span,
+.ticker_inner b {
+  white-space: nowrap;
+  font-size: .875rem;
+}
+@keyframes ticker_move {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* 베스트 메뉴 */
+.best_inner {
+  display: flex;
+  text-align: left;
+  margin: 20px 0 60px;
+}
+.best_menu_text {
+  position: relative;
+  width: 25%;
+  padding: 40px;
+}
+.best_menu_list {
+  margin-top: 80px;
+}
+.best_menu_list li {
+  margin-bottom: 14px;
+  cursor: pointer;
+}
+.best_menu_list li.is_active {
+  color: var(--raspberry-50);
+  font-weight: 600;
+}
+.best_menu_nav {
+  position: absolute;
+  right: 40px;
+  bottom: 50px;
+  display: flex;
+  gap: 12px;
+}
+.best_menu_prev,
+.best_menu_next {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--slate-0);
+  color: #fff;
+  cursor: pointer;
+}
+.best_menu_prev::before {
+  content: "<";
+  font-size: 1.2rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.best_menu_next::before {
+  content: ">";
+  font-size: 1.2rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.best_menu_swiper_wrap {
+  width: 75%;
+}
+.best_menu_swiper .swiper-slide {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--raspberry-0);
+}
+.best_menu_swiper img {
+  position: relative;
+  display: block;
+  width: 100%;
+  border-radius: 16px;
+  padding: 16px;
+}
+.swiper-slide h4 {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+}
+
+/* 인스타 */
+.insta_inner p {
+  margin: 12px 0 40px;
+  font-size: 1rem;
+}
+.insta_swiper .swiper-slide {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* ===============================
+  Tablet (≤1024px)
+=============================== */
+@media (max-width: 1024px) {
+  .content {
+    margin-left: 0;
+    max-width: 100%;
+    padding: 16px 24px;
+  }
+  .main_swiper {
+    height: 600px;
+  }
+  .best_inner {
+    flex-direction: column;
+  }
+  .best_menu_text,
+  .best_menu_swiper_wrap {
+    width: 100%;
+  }
+}
+/* ===============================
+  Tablet / Small Desktop (≤850px)
+=============================== */
+@media (max-width: 850px) {
+  .best_menu_swiper_wrap {
+    width: 100%;
+  }
+  .best_menu_swiper .swiper-slide {
+    flex: 1 0 45%;
+    min-width: 200px;
+  }
+  .best_menu_swiper img {
+    padding: 12px;
+  }
+  .insta_swiper .swiper-slide {
+    flex: 1 0 72%;
+    border-radius: 0;
+    min-width: auto;
+  }
+}
+/* ===============================
+  Mobile (≤576px)
+=============================== */
+@media (max-width: 576px) {
+  .best_menu_swiper_wrap {
+    width: 100%;
+    margin-top: 16px;
+  }
+  .best_menu_swiper .swiper-slide {
+    flex: 1 0 70%;
+    min-width: auto;
+  }
+  .best_menu_swiper img {
+    padding: 8px;
+  }
+}

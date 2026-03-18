@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>노티드</title>
+  <link rel="icon" href="8c5d3a6a2f1e2.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/knotted.css">
+  <link rel="stylesheet" href="/css/pickup.css">
+
+  <!-- JS libraries -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- init -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      AOS.init();
+    });
+  </script>
+
+  <!-- custom JS -->
+  <script src="/js/common.js"></script>
+  <script src="/js/location.js"></script>
+  <script src="/js/pickup.js"></script>
+  <script src="/js/pickupmenu.js"></script>
+</head>
+
+<body>
+  <div class="content user"></div>
+  <div class="header"></div>
+  <section class="content pickup">
+    <div>
+      <!-- STEP 1 -->
+      <section class="step is_active" id="step1">
+        <h2>매장 선택</h2>
+        <div class="store_list" id="store_list"></div>
+      </section>
+
+      <!-- STEP 2 -->
+      <section class="step" id="step2">
+        <h2>메뉴 선택</h2>
+
+        <div class="menu_layout">
+          <div>
+            <div class="menu_category">
+              <button class="active" onclick="filterMenu('all',this)">전체</button>
+              <button onclick="filterMenu('donut',this)">도넛</button>
+              <button onclick="filterMenu('cake',this)">케이크</button>
+              <button onclick="filterMenu('other',this)">포장 및 기타</button>
+            </div>
+            <div class="menu_list" id="menu_list"></div>
+          </div>
+
+          <!-- 메뉴 상세 이미지 모달 -->
+          <div class="modal" id="detail_modal">
+            <div class="modal_dim" onclick="closeDetail()"></div>
+
+            <div class="modal_content">
+              <button class="modal_close" onclick="closeDetail()">✕</button>
+              <img id="detail_img" alt="상세 이미지">
+              <button class="primary full" onclick="addMenuFromDetail()">담기</button>
+            </div>
+          </div>
+
+          <div class="selected_box">
+            <button class="secondary" onclick="goStep(1)">매장 다시 선택</button>
+            <div class="selected_store_box" id="store_info_box"></div>
+            <h3>선택한 메뉴</h3>
+            <div id="selected_list"></div>
+            <hr>
+            <p id="total"></p>
+            <!-- <button class="primary full" onclick="goStep3WithValidation()">날짜 선택하기</button> -->
+
+            <button class="secondary" onclick="goStep(3)">날짜 선택하기</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 3 -->
+      <section class="step step_datetime is_active" id="step3">
+        <div class="split_layout">
+
+          <!-- LEFT : 날짜 -->
+          <div class="split_col left">
+            <button class="secondary back_btn" onclick="goStep(2)">
+              ← 메뉴 다시 선택
+            </button>
+
+            <h2>픽업 날짜 선택</h2>
+            <div class="date_list" id="date_list"></div>
+          </div>
+
+          <!-- RIGHT : 시간 -->
+          <div class="split_col right">
+            <h2>픽업 시간 선택</h2>
+            <div class="time_list" id="time_list"></div>
+
+            <p id="selected_datetime" class="selected_datetime"></p>
+
+            <div class="notice">
+              <p>· 픽업 당일 취소 및 환불 불가</p>
+              <p>· 픽업 시간 10분 초과 시 자동 취소</p>
+            </div>
+
+            <button class="primary full" onclick="completePickup()">선택 완료</button>
+          </div>
+
+        </div>
+      </section>
+  </section>
+
+  <div class="modal" id="notice_modal">
+    <div class="modal_content">
+      <span class="modal_close" onclick="closeNoticeModal()">✕</span>
+      <h3>픽업 예약 주의사항</h3>
+      <p>
+        · 픽업 당일 취소 및 환불은 불가합니다.<br>
+        · 픽업 시간 초과 시 상품이 폐기될 수 있습니다.<br>
+        · 매장 상황에 따라 일부 메뉴가 변경될 수 있습니다.
+      </p>
+      <button onclick="goPayment()">확인했습니다</button>
+    </div>
+  </div>
+
+  <div class="footer"></div>
+</body>
+
+</html>

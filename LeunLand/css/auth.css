@@ -1,0 +1,86 @@
+@charset "utf-8";
+
+/* 로그인 */
+.auth_wrap {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  width: 1000px; height: 700px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+.auth_img {
+  width: 50%;
+  overflow: hidden;
+}
+.auth_inner {
+  position: absolute;
+  left: 50%; top: 16%;
+  width: 50%;
+  padding: 0 40px;
+}
+.title {
+  font-size: 3rem;
+  letter-spacing: 0.2em;
+  text-align: center;
+}
+.rainbow {
+  color: transparent;
+}
+.rainbow span {
+  display: inline-block;
+  background: linear-gradient(
+    270deg,
+    #ff6ec7,
+    #b967ff,
+    #4dd0e1,
+    #81c784,
+    #ffd54f,
+    #ff8a65
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow_move 6s ease infinite;
+}
+.bounce span {
+  animation:
+    rainbow_move 6s ease infinite,
+    jump 1.6s ease-in-out infinite;
+}
+.bounce span:nth-child(1) { animation-delay: 0s, 0s; }
+.bounce span:nth-child(2) { animation-delay: 0.05s, 0.05s; }
+.bounce span:nth-child(3) { animation-delay: 0.1s, 0.1s; }
+.bounce span:nth-child(4) { animation-delay: 0.15s, 0.15s; }
+.bounce span:nth-child(5) { animation-delay: 0.2s, 0.2s; }
+.bounce span:nth-child(6) { animation-delay: 0.25s, 0.25s; }
+.bounce span:nth-child(7) { animation-delay: 0.3s, 0.3s; }
+.bounce span:nth-child(8) { animation-delay: 0.35s, 0.35s; }
+@keyframes rainbow_move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes jump {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+#auth_form {
+  margin: 30px 0 50px;
+}
+#auth_form input {
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 12px;
+  margin: 10px 0;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid #ccc;
+  cursor: none;
+}
+.leun {
+  position: absolute;
+  bottom: -30px; right: 20px;
+  width: 300px; height: 300px;
+}

@@ -1,0 +1,499 @@
+@charset "utf-8";
+@import url(reset.css);
+
+/* Home */
+.page1,
+.images {
+  position: relative;
+}
+.images_item img {
+  position: absolute;
+}
+.scale:hover {
+  transform: scale(1.05);
+  transform-origin: bottom;
+  transition: 1s;
+}
+/* 말풍선 */
+.images_item .speech {
+  position: absolute;
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  white-space: nowrap;
+  border: 3px dashed #ccc;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  pointer-events: none;
+  transition: 0.3s;
+  z-index: 20;
+}
+.images_item .speech::after {
+  content: "";
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* 구름 */
+.cloud_img_1 {
+  bottom: 730px; left: 10px;
+  width: 200px; height: 200px;
+  animation: sunPulseRotate 5s infinite ease-in-out;
+}
+.cloud_img_1 + .speech {
+  bottom: 890px; left: 20px;
+}
+@keyframes sunPulseRotate {
+  0% { transform: scale(1) rotate(0deg); filter: brightness(1); }
+  40% { transform: scale(1.08) rotate(5deg); filter: brightness(1.2); }
+  70% { transform: scale(0.98) rotate(-3deg); filter: brightness(0.95); }
+  100% { transform: scale(1) rotate(0deg); filter: brightness(1); }
+}
+.cloud_img_2 {
+  bottom: 450px; left: 1800px;
+  width: 750px; height: 750px;
+  animation: rainbowBreath 7s infinite ease-in-out;
+}
+@keyframes rainbowBreath {
+  0% {
+    opacity: 0.6;
+    transform: scaleX(0.95);
+    filter: saturate(0.9);
+  }
+  40% {
+    opacity: 1;
+    transform: scaleX(1.05);
+    filter: saturate(1.2);
+  }
+  70% {
+    opacity: 0.85;
+    transform: scaleX(1);
+    filter: saturate(1);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scaleX(0.95);
+    filter: saturate(0.9);
+  }
+}
+.cloud_img_3 {
+  bottom: 500px; left: 2680px;
+  width: 250px; height: 250px;
+}
+.cloud_img_3 + .speech {
+  bottom: 750px; right: 1330px;
+}
+.cloud_img_4 {
+  bottom: 580px; right: 950px;
+  width: 200px; height: 200px;
+  animation: cloudMove 25s ease-in-out infinite alternate;
+  z-index: 1;
+}
+@keyframes cloudMove {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-2800px); }
+}
+.cloud_img_5 {
+  bottom: 440px; left: 1700px;
+  width: 100px; height: 100px;
+  transform: rotate(-20deg);
+}
+.cloud_img_6 {
+  bottom: 600px; right: 10px;
+  width: 250px; height: 250px;
+  animation: starFloat 5s infinite ease-in-out;
+}
+@keyframes starFloat {
+  0%   { transform: translateY(0) rotate(-3deg); }
+  50%  { transform: translateY(-15px) rotate(3deg); }
+  100% { transform: translateY(0) rotate(-3deg); }
+}
+
+/* 전광판 */
+.bxslider_img {
+  bottom: 440px; left: 790px;
+  width: 520px; height: 420px;
+  animation: grayscaleFade 3s infinite;
+}
+@keyframes grayscaleFade {
+  0% { filter: grayscale(0%); }
+  50% { filter: grayscale(750%); }
+  100% { filter: grayscale(10%); }
+}
+
+/* 로운 레오 */
+.rowoon_img {
+  bottom: 20px; left: 560px;
+  width: 250px; height: 250px;
+}
+.leo_img {
+  bottom: 10px; left: 800px;
+  width: 400px; height: 400px;
+}
+.rowoon_img:hover,
+.leo_img:hover {
+  animation: dog_double_jump 0.6s ease-out;
+}
+@keyframes dog_double_jump {
+  0%   { transform: translateY(0) scale(1); }
+
+  /* 1차 점프 */
+  20%  { transform: translateY(-18px) scale(1.05); }
+  35%  { transform: translateY(0) scale(0.98); }
+
+  /* 2차 점프 (조금 더 작게) */
+  55%  { transform: translateY(-12px) scale(1.04); }
+  70%  { transform: translateY(0) scale(1); }
+
+  100% { transform: translateY(0) scale(1); }
+}
+/* @keyframes jump {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-40px);
+  }
+} 
+ @keyframes jump2 {
+  0%,
+  100% {
+    transform: translateY(-30px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+} */
+
+.images_item .pet_card {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  /* 숨길 때 클릭 막기 */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+}
+.rowoon .pet_card {
+  bottom: 330px;
+  left: 500px;
+}
+.leo .pet_card {
+  bottom: 430px;
+  left: 780px;
+}
+.images_item .rowoon:hover .pet_card,
+.images_item .leo:hover .pet_card {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.pet_card {
+  position: relative;
+  display: flex;
+  width: 380px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+.pet_card::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 14px solid #fff;
+}
+.pet_info {
+  flex: 1;
+}
+.pet_detail {
+  margin-top: 16px;
+}
+.pet_detail li {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dashed #ccc;
+}
+.pet_detail li span {
+  color: #777;
+}
+.pet_detail .health {
+  border-bottom: none;
+}
+/* @media (max-width: 768px) {
+  .images_item .pet_card {
+    opacity: 1;
+    transform: translateY(0);
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+}
+@media (max-width: 768px) {
+  .pet_card {
+    flex-direction: column;
+    width: 100%;
+  }
+  .pet_image {
+    width: 100%;
+    height: 220px;
+  }
+  .pet_info {
+    margin-left: 0;
+    margin-top: 16px;
+  }
+} */
+
+/* 깃발 */
+.flag_img_1 {
+  bottom: 670px; left: 250px;
+  width: 80px; height: 80px;
+  animation: flag_wave 1.8s ease-in-out infinite;
+}
+.flag_img_2 {
+  bottom: 730px; left: 430px;
+  width: 100px; height: 100px;
+  animation: flag_wave 2s ease-in-out infinite;
+}
+@keyframes flag_wave {
+  0%   { transform: skewY(0deg); }
+  25%  { transform: skewY(-3deg); }
+  50%  { transform: skewY(2deg); }
+  75%  { transform: skewY(-2deg); }
+  100% { transform: skewY(0deg); }
+}
+
+/* 풍선 */
+.balloon_img_1 {
+  bottom: 700px; left: 1080px;
+  width: 200px; height: 200px;
+  animation: balloon_wind 10s ease-in-out infinite;
+}
+@keyframes balloon_wind {
+  /* 상승 */
+  0%   { transform: translate(0, 0); }
+  30%  { transform: translate(-20px, -30px); }
+  60%  { transform: translate(15px, -60px); }
+  /* 하강 */
+  75%  { transform: translate(-10px, -45px); }
+  90%  { transform: translate(8px, -20px); }
+  100% { transform: translate(0, 0); }
+}
+.balloon_img_2 {
+  bottom: 600px; left: 1880px;
+  width: 200px; height: 200px;
+  /* animation: balloon_lr 15s ease-in-out infinite; */
+}
+.balloon_img_3 {
+  bottom: 700px; right: 600px;
+  width: 250px; height: 250px;
+  animation: balloon_lr 8s ease-in-out infinite;
+}
+@keyframes balloon_lr {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-80px); }
+  50% { transform: translateX(-160px); }
+  75% { transform: translateX(80px); }
+  100% { transform: translateX(0); }
+}
+.balloon_img_4 {
+  bottom: 570px; right: 520px;
+  width: 120px; height: 120px;
+  transform-origin: bottom center;
+  animation: balloon_breath 3.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+@keyframes balloon_breath {
+  0% { transform: scale(1, 1); }
+  50% { transform: scale(1.07, 1.1); }
+  100% { transform: scale(1, 1); }
+}
+.balloon_img_5 {
+  bottom: 140px; right: 340px;
+  width: 200px; height: 200px;
+  transform-origin: bottom center;
+  animation: balloon_swing 3s ease-in-out infinite;
+}
+.balloon {
+  bottom: 100px; left: 320px;
+}
+@keyframes balloon_swing {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(4deg); }
+  50%  { transform: rotate(0deg); }
+  75%  { transform: rotate(-3deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* 배 == 1은 오른쪽임== */
+.ship_img_1 {
+  bottom: 110px; right: 1030px;
+  width: 160px; height: 160px;
+  animation: ship_diagonal 12s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes ship_diagonal {
+  0% { transform: translate(0, 0) scale(0.5); }
+  50% { transform: translate(-40px, 10px) scale(1); }
+  100% { transform: translate(40px, -20px) scale(0.4); }
+}
+.ship_img_2 {
+  bottom: -10px; left: 1180px;
+  width: 550px; height: 550px;
+}
+.ship_img_2 + .speech {
+  bottom: 400px; left: 1340px;
+}
+
+/* 통 */
+.tong_img {
+  bottom: 260px; right: 1700px;
+  width: 160px; height: 160px;
+  transform-origin: bottom center;
+  animation: shake_side 1s infinite;
+}
+@keyframes shake_side {
+  0%   { transform: rotate(0deg); }
+  15%  { transform: rotate(-4deg); }
+  30%  { transform: rotate(4deg); }
+  45%  { transform: rotate(-3deg); }
+  60%  { transform: rotate(3deg); }
+  75%  { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* 집 */
+.house_img {
+  bottom: 140px; right: 1480px;
+  width: 350px; height: 350px;
+  z-index: 1;
+}
+.house_img + .speech {
+  bottom: 400px; right: 1680px;
+}
+
+/* 말 */
+.carousel_img {
+  bottom: 260px; right: 1400px;
+  width: 350px; height: 350px;
+  opacity: 0.8;
+}
+
+/* 컵 */
+.cup_img {
+  bottom: 120px; right: 580px;
+  width: 350px; height: 350px;
+}
+.cup_img + .speech {
+  bottom: 400px; right: 680px;
+}
+
+/* 다크모드 전체 톤 다운 */
+body.dark .images_item img {
+  filter:
+    brightness(0.65)
+    contrast(2)
+    saturate(0.85);
+  transition: filter 0.6s ease;
+}
+body.dark .rowoon_img,
+body.dark .leo_img {
+  filter: none !important;
+}
+body.dark .pet_card,
+body.dark .speech {
+  background: #eee;
+}
+body.dark .pet_card::after,
+body.dark .speech::after {
+  border-top: 14px solid #eee;
+}
+body.dark .scale:hover {
+  transition: 1s;
+}
+
+/* 사이드 */
+.side_menu {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+  text-align: right;
+}
+.side_toggle {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 1.4rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+body.dark .side_toggle {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+.side_list {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  list-style: none;
+  display: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+body.dark .side_list {
+  background: rgba(0, 0, 0, 0.5);
+}
+.side_menu.open .side_list {
+  display: block;
+}
+.side_list li {
+  margin: 8px 0;
+}
+body.dark .side_list a,
+body.dark .side_item {
+  color: #eee;
+}
+.side_list li:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 560px) {
+  .rowoon_img {
+    bottom: 20px; left: 330px;
+    width: 160px; height: 160px;
+    z-index: 1000;
+  }
+  .leo_img {
+    bottom: 10px; left: 460px;
+    width: 280px; height: 280px;
+  }
+  .rowoon .pet_card {
+    bottom: 250px;
+    left: 280px;
+  }
+  .leo .pet_card {
+    bottom: 300px;
+    left: 460px;
+  }
+  .pet_card {
+    width: 260px;
+    padding: 4px;
+  }
+  
+  .bxslider_img {
+    bottom: 260px; left: 550px;
+    width: 420px; height: 420px;
+    animation: grayscaleFade 3s infinite;
+  }
+}

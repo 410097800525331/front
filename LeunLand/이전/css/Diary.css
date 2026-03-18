@@ -1,0 +1,95 @@
+@charset 'utf-8';
+
+.diary_page {
+  background: #fffdf8;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.diary_title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.diary_write {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.diary_date,
+.diary_input,
+.diary_textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+.diary_textarea {
+  height: 120px;
+  resize: none;
+}
+
+.diary_btn {
+  padding: 10px;
+  background: #c9b8a8;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.diary_btn:hover {
+  background: #b4a391;
+}
+
+/* 다이어리 카드 */
+.diary_list {
+  list-style: none;
+  padding: 0;
+}
+
+.diary_item {
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  position: relative;
+  animation: pop 0.4s ease;
+}
+
+/* 테이프 느낌 */
+.diary_item::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 20px;
+  width: 60px;
+  height: 16px;
+  background: rgba(255, 225, 130, 0.6);
+  transform: rotate(-3deg);
+}
+
+.diary_item h4 {
+  margin: 0 0 6px;
+}
+
+.diary_item span {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+@keyframes pop {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

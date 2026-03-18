@@ -1,0 +1,63 @@
+@charset "utf-8";
+
+.sign_modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 1000;
+}
+.sign_modal_overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+.sign_modal_content {
+  position: relative;
+  width: 600px; height: 400px;
+  padding: 70px 40px;
+  background: var(--l3);
+  border-radius: var(--radius-sm);
+
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+#sign_up_modal .signup_modal {
+  padding: 30px 40px;
+}
+.sign_close_btn {
+  position: absolute;
+  top: 16px; right: 16px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.sign_modal_content h2 {
+  margin-bottom: 24px;
+}
+.login_form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  background: var(--l4);
+  border-radius: var(--radius-sm);
+}
+.sign_submit_btn {
+  width: 100%;
+  padding: 12px;
+  margin: 16px 0;
+  font-weight: bold;
+  background: var(--d2);
+  color: var(--l3);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.sign_submit_btn:hover {
+  background: var(--d3);
+}
+.sign_switch {
+  margin-top: 16px;
+  text-align: center;
+}
+.sign_switch a {
+  text-decoration: underline;
+}

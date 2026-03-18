@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leunland</title>
+  <link rel="ico" href="favicon.svg" />
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+  <section id="layout" class="layout">
+    <!-- Main -->
+    <main class="main">
+      <img src="/assets/img/bg-minigame.png" alt="main bg">
+      <!-- Login -->
+      <div id="sign_in_modal" class="sign_modal_content">
+        <h2>LEUNLAND</h2>
+
+        <form id="login_form" class="login_form">
+          <input id="login_id" type="text" placeholder="아이디" required>
+          <input id="login_pw" type="password" placeholder="비밀번호" required>
+          <button type="submit" class="sign_submit_btn">로그인</button>
+        </form>
+
+        <p class="sign_switch">
+          아직 계정이 없으신가요?
+          <a href="#" id="go_signup"> 회원가입</a>
+        </p>
+      </div>
+
+      <!-- Join -->
+      <div id="sign_up_modal" class="sign_modal_content signup_modal">
+        <h2>LEUNLAND</h2>
+
+        <form id="signup_form" class="login_form">
+          <input type="text" placeholder="아이디" required>
+          <input type="password" placeholder="비밀번호" required>
+          <input type="password" placeholder="비밀번호 확인" required>
+
+          <button type="submit" class="sign_submit_btn">Create Account</button>
+        </form>
+
+        <p class="sign_switch">
+          이미 계정이 있으신가요?
+          <a href="#" id="go_signin">로그인</a>
+        </p>
+      </div>
+    </main>
+
+    <!-- Main Content -->
+    <div id="main_content">
+      <h1>환영합니다! LEUNLAND 메인 페이지</h1>
+      <p>로그인 성공!</p>
+      <img src="/assets/img/bg-minigame.png" alt="Main Image" style="width: 80%; margin-top:20px;">
+    </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(document).ready(function () {
+
+      // 로그인 → 회원가입
+      $("#go_signup").click(function (e) {
+        e.preventDefault();
+        $("#sign_in_modal").hide();
+        $("#sign_up_modal").show();
+      });
+
+      // 회원가입 → 로그인
+      $("#go_signin").click(function (e) {
+        e.preventDefault();
+        $("#sign_up_modal").hide();
+        $("#sign_in_modal").show();
+      });
+
+      // 로그인 체크
+      $("#login_form").submit(function (e) {
+        e.preventDefault();
+        const id = $("#login_id").val();
+        const pw = $("#login_pw").val();
+
+        if (id === "leun" && pw === "123") {
+          // 로그인 성공 → Home.html로 이동
+          window.location.href = "/basic/Home.html";
+        } else {
+          alert("아이디 또는 비밀번호를 확인해주세요");
+        }
+      });
+
+      // 회원가입 테스트용
+      $("#signup_form").submit(function (e) {
+        e.preventDefault();
+        alert("가입 기능은 아직 구현되지 않았습니다.");
+      });
+
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sageMusic</title>
+  <link rel="ico" href="favicon.svg" />
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+  <section class="layout">
+    <!-- Left Sidebar -->
+    <div class="left_sidebar"></div>
+    <!-- Main -->
+    <main class="main">
+      <div class="top"></div>
+      <!-- 로그인 버튼 -->
+      <button id="signin_btn">Login</button>
+
+      <!-- 로그인 모달 -->
+      <div class="sign_modal" id="sign_modal">
+        <div class="sign_modal_overlay"></div>
+
+        <div class="sign_modal_content">
+          <button class="sign_close_btn" id="sign_close_btn">✕</button>
+
+          <h2>Sign in</h2>
+
+          <form class="login_form">
+            <input type="text" placeholder="Id" required>
+            <input type="password" placeholder="Password" required>
+
+            <button type="submit" class="sign_submit_btn">Login</button>
+          </form>
+
+          <p class="login_helper">
+            Don’t have an account?
+            <a href="#">Join</a>
+          </p>
+        </div>
+      </div>
+
+    </main>
+    <!-- Right Sidebar -->
+    <!-- <div class="right_sidebar">
+      <h1>Music Playing</h1>
+    </div> -->
+  </section><script>
+  const loginOpenBtn = document.getElementById('signin_btn');
+  const loginModal = document.getElementById('sign_modal');
+  const loginCloseBtn = document.getElementById('sign_close_btn');
+  const loginOverlay = document.querySelector('.sign_modal_overlay');
+
+  loginOpenBtn.addEventListener('click', () => {
+    loginModal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  });
+
+  const closeModal = () => {
+    loginModal.style.display = 'none';
+    document.body.style.overflow = '';
+  };
+
+  loginCloseBtn.addEventListener('click', closeModal);
+  loginOverlay.addEventListener('click', closeModal);
+</script>
+
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/js/include.js"></script>
+</body>
+
+</html>

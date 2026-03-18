@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAGE Archive</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --bg: #e6e6e2;
+      --paper: #dcd8cf;
+      --ink: #1b1b1b;
+      --muted: #6b6b6b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      font-family: "Pretendard", sans-serif;
+    }
+
+    .archive_wall {
+      display: flex;
+      height: 100vh;
+      padding: 40px;
+      gap: 12px;
+    }
+
+    /* === archive tab === */
+    .archive_item {
+      position: relative;
+      width: 90px;
+      background: var(--paper);
+      cursor: pointer;
+      transition: width 0.6s ease;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .archive_item.active {
+      width: 520px;
+    }
+
+    /* label */
+    .tab_label {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      padding: 20px 0;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+    }
+
+    /* expanded content */
+    .archive_content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      padding: 40px;
+      gap: 40px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .archive_item.active .archive_content {
+      opacity: 1;
+    }
+
+    /* === record === */
+    .record_wrap {
+      width: 160px;
+      height: 160px;
+      position: relative;
+    }
+
+    .record {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, #333 8%, #111 30%, #000 60%);
+      animation: spin 8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* info */
+    .track_info h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      color: var(--ink);
+    }
+
+    .track_info p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="archive_wall">
+
+    <article class="archive_item" data-album="01">
+      <div class="tab_label">GRID DAILY_01</div>
+
+      <div class="archive_content">
+        <div class="record_wrap">
+          <div class="record"></div>
+        </div>
+        <div class="track_info">
+          <h2>GRID DAILY_01</h2>
+          <p>Ambient / Lo-fi / Archive</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="archive_item" data-album="02">
+      <div class="tab_label">FALLING LOG</div>
+
+      <div class="archive_content">
+        <div class="record_wrap">
+          <div class="record"></div>
+        </div>
+        <div class="track_info">
+          <h2>FALLING LOG</h2>
+          <p>Dark Ambient / Experimental</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="archive_item" data-album="03">
+      <div class="tab_label">AFTER WORK</div>
+
+      <div class="archive_content">
+        <div class="record_wrap">
+          <div class="record"></div>
+        </div>
+        <div class="track_info">
+          <h2>AFTER WORK</h2>
+          <p>Night Drive / Mood</p>
+        </div>
+      </div>
+    </article>
+
+  </section>
+  <script>
+    const items = document.querySelectorAll(".archive_item");
+
+    items.forEach(item => {
+      item.addEventListener("click", () => {
+        items.forEach(i => i.classList.remove("active"));
+        item.classList.add("active");
+      });
+    });
+
+  </script>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

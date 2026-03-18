@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>레운랜드 글 전시</title>
+  <link rel="stylesheet" href="exhibit.css" />
+  <style>
+    * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f3f1ec;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exhibit_wrap {
+  position: relative;
+  width: 700px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exhibit_card {
+  width: 520px;
+  padding: 30px;
+  background: #fffdf8;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.exhibit_date {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.exhibit_title {
+  margin: 10px 0 16px;
+}
+
+.exhibit_text {
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+/* 화살표 버튼 */
+.arrow_btn {
+  position: absolute;
+  right: -60px;
+  font-size: 2.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  animation: arrow_move 1.6s infinite ease-in-out;
+  color: #444;
+}
+
+/* 좌우로 살짝 움직임 */
+@keyframes arrow_move {
+  0% {
+    transform: translateX(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(12px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 0.5;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+<section class="exhibit_wrap">
+  <div class="exhibit_card">
+    <span class="exhibit_date">2026.01.07</span>
+    <h2 class="exhibit_title">오늘의 기록</h2>
+    <p class="exhibit_text">
+      이 공간은 전시관이다.  
+      읽히기 위해 쓰인 글이 아니라  
+      머물기 위해 놓인 문장들.
+    </p>
+  </div>
+
+  <!-- 오른쪽 화살표 -->
+  <button class="arrow_btn">▶</button>
+</section>
+<script>
+  const arrow = document.querySelector(".arrow_btn");
+
+const posts = [
+  {
+    date: "2026.01.07",
+    title: "오늘의 기록",
+    text: `이 공간은 전시관이다.
+읽히기 위해 쓰인 글이 아니라
+머물기 위해 놓인 문장들.`
+  },
+  {
+    date: "2026.01.06",
+    title: "산책 후",
+    text: `레오가 먼저 멈췄고
+로운은 그 뒤를 따라왔다.
+오늘은 그런 하루였다.`
+  },
+  {
+    date: "2026.01.05",
+    title: "비 오는 날",
+    text: `비가 오면
+생각은 항상 같은 자리에 고인다.`
+  }
+];
+
+let index = 0;
+
+arrow.addEventListener("click", () => {
+  index = (index + 1) % posts.length;
+
+  document.querySelector(".exhibit_date").innerText = posts[index].date;
+  document.querySelector(".exhibit_title").innerText = posts[index].title;
+  document.querySelector(".exhibit_text").innerText = posts[index].text;
+});
+
+</script>
+<script src="exhibit.js"></script>
+</body>
+</html>

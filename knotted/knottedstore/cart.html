@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>노티드</title>
+  <link rel="icon" href="8c5d3a6a2f1e2.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/knotted.css">
+  <link rel="stylesheet" href="/css/user.css">
+
+  <!-- JS libraries -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- init -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      AOS.init();
+    });
+  </script>
+
+  <!-- custom JS -->
+  <script src="/js/common.js"></script>
+</head>
+
+
+<body>
+  <div class="header"></div>
+  <section class="content cart_wrap">
+    <!-- 상단 타이틀 -->
+    <section class="cart_header">
+      <h2>Cart</h2>
+      <p class="cart_count">장바구니 <strong>0</strong></p>
+    </section>
+
+    <!-- 테이블 헤더 -->
+    <section class="cart_table">
+      <div class="cart_table_head">
+        <span>상품정보</span>
+        <span>수량</span>
+        <span>주문금액</span>
+        <span>배송정보</span>
+      </div>
+
+      <!-- 비어있을 때 -->
+      <div class="cart_empty">
+        <p>장바구니가 비어있습니다.</p>
+        <a href="/knottedstore/shop.html" class="btn_shop">계속 쇼핑하기</a>
+      </div>
+    </section>
+  </section>
+  <div class="footer"></div>
+</body>
+
+</html>

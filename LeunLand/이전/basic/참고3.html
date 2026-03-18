@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Archive Folder</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+  --bg: #0f0f0f;
+  --paper: #e7dfd2;
+  --paper_dark: #d8cfc2;
+  --ink: #222;
+  --accent: #e08bb0;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  padding: 60px;
+  font-family: "Pretendard", sans-serif;
+}
+
+.archive {
+  position: relative;
+  width: 360px;
+  height: 480px;
+}
+
+/* 메인 폴더 */
+.folder {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  background: var(--paper);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.folder_top {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.folder_center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+}
+
+/* 탭 */
+.tabs {
+  position: absolute;
+  top: 90px;
+  right: -44px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  z-index: 4;
+}
+
+.tab {
+  background: var(--paper_dark);
+  padding: 10px 6px;
+  margin-bottom: 8px;
+  writing-mode: vertical-rl;
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+
+.tab.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* 슬라이드 종이 */
+.sheet_wrap {
+  position: absolute;
+  top: 40px;
+  left: 100%;
+  width: 260px;
+  height: 400px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.sheet {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  padding: 20px;
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.sheet.active {
+  transform: translateX(0);
+}
+
+.sheet p {
+  margin: 0 0 10px;
+  font-size: 0.85rem;
+}
+
+  </style>
+</head>
+<body>
+
+<div class="archive">
+
+  <!-- 메인 폴더 -->
+  <div class="folder">
+    <span class="folder_top">cozy szn // 2025–2026</span>
+    <span class="folder_center">(archive files)</span>
+  </div>
+
+  <!-- 오른쪽 탭 -->
+  <ul class="tabs">
+    <li class="tab active" data-sheet="inventory">inventory</li>
+    <li class="tab" data-sheet="selfcare">selfcare ideas</li>
+    <li class="tab" data-sheet="content">content</li>
+  </ul>
+
+  <!-- 슬라이드 종이 -->
+  <div class="sheet_wrap">
+    <div class="sheet active" id="inventory">
+      <p>vinyl records</p>
+      <p>notebooks</p>
+      <p>late night playlists</p>
+    </div>
+
+    <div class="sheet" id="selfcare">
+      <p>warm tea</p>
+      <p>quiet mornings</p>
+      <p>slow walks</p>
+    </div>
+
+    <div class="sheet" id="content">
+      <p>photo diary</p>
+      <p>sound archive</p>
+      <p>notes</p>
+    </div>
+  </div>
+
+</div>
+<script>
+  const tabs = document.querySelectorAll(".tab");
+const sheets = document.querySelectorAll(".sheet");
+
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    const id = tab.dataset.sheet;
+
+    tabs.forEach(t => t.classList.remove("active"));
+    sheets.forEach(s => s.classList.remove("active"));
+
+    tab.classList.add("active");
+    document.getElementById(id).classList.add("active");
+  });
+});
+
+</script>
+<script src="script.js"></script>
+</body>
+</html>

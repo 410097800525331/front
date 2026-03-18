@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- header -->
+  <header>
+    <div class="logo">S E U L - G I</div>
+    <nav>
+      <ul id="menu">
+        <li data-aos="fade-down" data-aos-delay="100"><a href="#home">Home</a></li>
+        <li data-aos="fade-down" data-aos-delay="200"><a href="#about_section">About</a></li>
+        <li data-aos="fade-down" data-aos-delay="300"><a href="#web_portfolio">Web Portfolio</a></li>
+        <!-- <li data-aos="fade-down" data-aos-delay="400"><a href="#blender_portfolio">Blender</a></li> -->
+        <li data-aos="fade-down" data-aos-delay="500"><a href="#design_portfolio">Design</a></li>
+        <li data-aos="fade-down" data-aos-delay="600"><a href="#contact_section">Contact</a></li>
+      </ul>
+      <div id="hamburger" class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </nav>
+  </header>
+  <!-- home -->
+  <div id="home">
+    <div class="home_bg"></div>
+    <h2 id="clock">Kim SeulGi</h2>
+    <div class="circle_ani"><img src="/img/curve_text.svg" alt="circle ani"></div>
+    <div class="mouse"><span><img src="/img/ico-mouse.png" alt="Go to Bottom"></span></div>
+  </div>
+  <!-- about section -->
+  <section id="about_section">
+    <div class="box" data-aos="fade-up" data-aos-delay="900">
+      <h3>PORTFOLIO</h3>
+      <img src="img/IMG_8846.png" alt="My Photo">
+      <h3>김 슬 기</h3>
+      <div class="info_list">
+        <p><b>생년월일 :</b> 2004.10.14</p>
+        <p><b>이메일 :</b> seulgirw410@gmail.com</p>
+        <p><b>전화번호 :</b> 010-2499-4191</p>
+      </div>
+    </div>
+    <div class="box" data-aos="fade-up" data-aos-delay="600">
+      <div>
+        <h3>EDUCATION</h3>
+        <p>2020.03~2023.02 삼일상업고등학교 졸업</p>
+        <p>2021.03~2023.02 성주약품 학습근로자</p>
+        <p>2023.11~2025.07 티지이글로벌 디자이너</p>
+      </div>
+      <div>
+        <h3>EDUCATION</h3>
+        <p>2023.04~2023.08<br>웹디자인 & 웹퍼블리싱 실무자 양성과정</p><!-- (SBS아카데미학원) -->
+        <p>2025.09~2026.04<br>프로젝트 기반 풀스택 개발자 양성과정</p>
+      </div>
+      <div>
+        <h3>CERTIFICATE</h3>
+        <p>2020.09 전산회계 2급</p>
+        <p>2020.12 워드프로세서</p>
+        <p>2021.04 한글엑셀(A)</p>
+        <p>2021.06 한글엑세스(A)</p>
+        <p>2023.04 운전면허 2종</p>
+      </div>
+    </div>
+    <div class="box" data-aos="fade-up" data-aos-delay="300">
+      <h3>PROGRAM SKILLS</h3>
+      <div class="skill">
+        <div class="skill_name">Photoshop 90%</div>
+        <div class="skill_bar">
+          <div class="skill_fill" data-width="90%"></div>
+        </div>
+      </div>
+      <div class="skill">
+        <div class="skill_name">Illustrator 95%</div>
+        <div class="skill_bar">
+          <div class="skill_fill" data-width="95%"></div>
+        </div>
+      </div>
+      <!-- <div class="skill">
+        <div class="skill_name">Blender 65%</div>
+        <div class="skill_bar">
+          <div class="skill_fill" data-width="65%"></div>
+        </div>
+      </div> -->
+      <div class="skill">
+        <div class="skill_name">Frontend 90%</div>
+        <div class="skill_bar">
+          <div class="skill_fill" data-width="90%"></div>
+        </div>
+      </div>
+      <div class="skill">
+        <div class="skill_name">Backend 70%</div>
+        <div class="skill_bar">
+          <div class="skill_fill" data-width="70%"></div>
+        </div>
+      </div>
+      <div class="skill">
+        <div class="skill_name">Excel 70%</div>
+        <div class="skill_bar">
+          <div class="skill_fill" data-width="70%"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- web_portfolio -->
+  <section id="web_portfolio">
+    <div class="inner">
+      <h2>Web Portfolio</h2>
+      <p>Responsive web & mobile design projects. All projects optimized for PC and Mobile.</p>
+      <div class="web_portfolio_grid"></div>
+    </div>
+  </section>
+  <!-- blender_portfolio -->
+  <!-- <section id="blender_portfolio">
+    <div class="inner">
+      <h2>Blender Portfolio</h2>
+      <p>3D artworks and models created in Blender.</p>
+      <div class="blender_grid">
+        <div class="blender_card">
+          <img src="https://www.dummyimage.com/600x400/fff/000&text=preparing+..." alt="Artwork 1">
+          <div class="blender_info">
+            <h3>Artwork 1</h3>
+            <p>Rendered with Cycles, 2025</p>
+          </div>
+        </div>
+        <div class="blender_card">
+          <img src="https://www.dummyimage.com/600x400/fff/000&text=preparing+..." alt="Artwork 2">
+          <div class="blender_info">
+            <h3>Artwork 2</h3>
+            <p>Rendered with Eevee, 2025</p>
+          </div>
+        </div>
+        <div class="blender_card">
+          <img src="https://www.dummyimage.com/600x400/fff/000&text=preparing+..." alt="Artwork 3">
+          <div class="blender_info">
+            <h3>Artwork 3</h3>
+            <p>Rendered with Cycles, 2024</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <!-- design_portfolio -->
+  <section id="design_portfolio">
+    <div class="inner">
+      <h2>Design Portfolio</h2>
+      <p>My creations were made with Photoshop Illustrator.</p>
+      <div class="dpf_portfolio_grid"></div>
+    </div>
+  </section>
+  <!-- Info Modal -->
+  <div class="info_modal" id="infoModal">
+    <div class="info_modal_overlay"></div>
+    <div class="info_modal_content">
+      <button class="info_modal_close">&times;</button>
+      <img src="" alt="Work Info">
+    </div>
+  </div>
+  <!-- Contact Section -->
+  <section id="contact_section">
+    <div class="inner">
+      <h2>Contact</h2>
+      <ul class="addr">
+        <li><i class="fa-solid fa-phone"></i>Phone: <a href="tel:010-2499-4191">+82 10-2499-4191</a></li>
+        <li><i class="fa-solid fa-envelope"></i>Email: <a href="mailto:seulgirw410@gmail.com">seulgirw410@gmail.com</a>
+        </li>
+      </ul>
+      <form class="contact_form" action="https://formspree.io/f/xpqyywly" method="POST">
+        <input type="hidden" name="_subject" value="Portfolio Contact">
+        <input type="text" name="name" placeholder="성함을 입력해주세요" required>
+        <input type="email" name="email" placeholder="이메일을 입력해주세요" required>
+        <textarea name="message" placeholder="메시지를 작성해주세요" rows="5" required></textarea>
+        <button type="submit">문의 보내기</button>
+      </form>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="footer_section">
+    <div class="inner">
+      <div class="footer_info">
+        <!-- <p>Email: <a href="mailto:xmxhxn13@naver.com">xmxhxn13@naver.com</a></p>
+        <p>Phone: +82-10-2499-4191</p> -->
+      </div>
+      <!-- <div class="footer_social">
+        <a href="#" target="_blank">KaKao</a>
+        <a href="#" target="_blank">Instagram</a>
+        <a href="#" target="_blank">GitHub</a>
+      </div> -->
+      <p>&copy; 2025 KSG. All rights reserved.</p>
+    </div>
+  </footer>
+  <!-- Top Button -->
+  <button id="topBtn" title="Go to top">↑</button>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/js/clock.js"></script>
+  <script src="/js/dark.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/wpfData.js"></script>
+  <script src="/js/wpf.js"></script>
+  <script src="/js/dpfData.js"></script>
+  <script src="/js/dpf.js"></script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Leunland Album</title>
+  <link rel="stylesheet" href="album.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f5f5f3;
+      font-family: "Apple SD Gothic Neo", sans-serif;
+    }
+
+    .album_wall {
+      display: flex;
+      gap: 120px;
+      padding: 120px;
+      overflow-x: auto;
+      height: 100vh;
+    }
+
+    .album_item {
+      flex-shrink: 0;
+    }
+
+    .album_box {
+      position: relative;
+      width: 220px;
+      height: 180px;
+      perspective: 1200px;
+      cursor: pointer;
+    }
+
+    .album_cover {
+      position: absolute;
+      inset: 0;
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 24px;
+      font-size: 1rem;
+      line-height: 1.6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transform-origin: left;
+      transition: transform 0.8s ease;
+      z-index: 2;
+    }
+
+    .album_inner {
+      position: absolute;
+      inset: 0;
+      background: #111;
+      color: #fff;
+      padding: 20px;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    .album_date {
+      font-size: 0.75rem;
+      opacity: 0.7;
+      margin-bottom: 12px;
+    }
+
+    .album_box.open .album_cover {
+      transform: rotateY(-110deg);
+    }
+
+
+
+
+
+    @import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f4f4f2;
+      font-family: "Apple SD Gothic Neo", sans-serif;
+    }
+
+    .album_wall {
+      display: flex;
+      gap: 140px;
+      padding: 120px;
+      overflow-x: auto;
+      height: 100vh;
+    }
+
+    .album_box {
+      position: relative;
+      width: 220px;
+      height: 180px;
+      perspective: 1400px;
+      cursor: pointer;
+    }
+
+    .album_page {
+      position: absolute;
+      inset: 0;
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 22px;
+      transform-origin: left;
+      transition: transform 0.8s ease;
+      backface-visibility: hidden;
+    }
+
+    .album_cover {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 3;
+    }
+
+    .album_inner {
+      background: #111;
+      color: #fff;
+      z-index: 1;
+    }
+
+    .album_inner:nth-child(2) {
+      z-index: 2;
+    }
+
+    .album_inner:nth-child(3) {
+      z-index: 1;
+    }
+
+    .album_date {
+      font-family: "Nanum Pen Script", cursive;
+      font-size: 1.2rem;
+      opacity: 0.8;
+      margin-bottom: 12px;
+    }
+
+    .album_text {
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* hover: 살짝 열림 */
+    .album_box:hover .album_page:first-child {
+      transform: rotateY(-25deg);
+    }
+
+    /* click: 페이지 넘기기 */
+    .album_box.open .album_page:nth-child(1) {
+      transform: rotateY(var(--angle));
+    }
+
+    .album_box.open.page2 .album_page:nth-child(2) {
+      transform: rotateY(var(--angle));
+    }
+
+
+
+
+
+
+
+
+    @import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap");
+
+    body {
+      background: #efefec;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Apple SD Gothic Neo", sans-serif;
+    }
+
+    .book_stage {
+      perspective: 2000px;
+    }
+
+    .book {
+      position: relative;
+      width: 520px;
+      height: 320px;
+      transform-style: preserve-3d;
+    }
+
+    /* 책 등 */
+    .book_spine {
+      position: absolute;
+      left: 50%;
+      width: 24px;
+      height: 100%;
+      background: linear-gradient(to right,
+          #aaa,
+          #ddd,
+          #aaa);
+      transform: translateX(-50%);
+      z-index: 5;
+    }
+
+    /* 페이지 공통 */
+    .page {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      background: #faf9f6;
+      padding: 32px;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .left_page {
+      left: 0;
+      border-radius: 12px 0 0 12px;
+    }
+
+    .right_page {
+      right: 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    /* 커버 */
+    .book_cover {
+      position: absolute;
+      inset: 0;
+      background: #fff;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transform-origin: left;
+      transition: transform 1s ease;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+
+    .book_cover h3 {
+      letter-spacing: 4px;
+      margin-bottom: 12px;
+    }
+
+    .book_cover p {
+      font-size: 0.85rem;
+      opacity: 0.6;
+    }
+
+    /* 날짜 손글씨 */
+    .page_date {
+      font-family: "Nanum Pen Script", cursive;
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+    }
+
+    .page_text {
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* 열림 상태 */
+    .book.open .book_cover {
+      transform: rotateY(-160deg);
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="album_wall">
+
+    <div class="album_item">
+      <div class="album_box">
+        <div class="album_cover">
+          전 세계의 정보를<br />연결할 수 있을까?
+        </div>
+        <div class="album_inner">
+          <p class="album_date">2010.06.15</p>
+          <p class="album_text">
+            작은 아이디어 하나가 세상을 바꾸는 출발점이 되었다.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="album_item">
+      <div class="album_box">
+        <div class="album_cover">
+          현금 없이도<br />식사를 할 수 있을까?
+        </div>
+        <div class="album_inner">
+          <p class="album_date">2014.09.03</p>
+          <p class="album_text">
+            결제 방식은 기술보다 사람의 습관을 먼저 바꾼다.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="album_item">
+      <div class="album_box">
+        <div class="album_cover">
+          이탈리아의 에스프레소 바를<br />미국에서도 즐길 수 있을까?
+        </div>
+        <div class="album_inner">
+          <p class="album_date">2016.11.21</p>
+          <p class="album_text">
+            문화는 복제되는 게 아니라 번역된다.
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+      document.querySelectorAll(".album_box").forEach(box => {
+        box.addEventListener("click", () => {
+          box.classList.toggle("open");
+        });
+      });
+
+    </script>
+  </section>
+
+
+  <section class="album_wall">
+
+    <div class="album_item">
+      <div class="album_box" data-angle="">
+
+        <!-- page 1 -->
+        <div class="album_page album_cover">
+          전 세계의 정보를<br />연결할 수 있을까?
+        </div>
+
+        <!-- page 2 -->
+        <div class="album_page album_inner">
+          <p class="album_date">2010.06.15</p>
+          <p class="album_text">
+            작은 아이디어 하나가<br />
+            세상을 바꾸는 출발점이 되었다.
+          </p>
+        </div>
+
+        <!-- page 3 -->
+        <div class="album_page album_inner">
+          <p class="album_date">2011.01.02</p>
+          <p class="album_text">
+            질문은 언제나<br />
+            불안에서 시작된다.
+          </p>
+        </div>
+
+      </div>
+    </div>
+    <script>
+      document.querySelectorAll(".album_box").forEach(box => {
+        let page = 0;
+        const pages = box.querySelectorAll(".album_page");
+
+        // 랜덤 각도 (-90 ~ -130)
+        const randomAngle = -90 - Math.floor(Math.random() * 40);
+        box.style.setProperty("--angle", `${randomAngle}deg`);
+
+        box.addEventListener("click", () => {
+          page++;
+
+          if (page === 1) {
+            box.classList.add("open");
+          } else if (page === 2) {
+            box.classList.add("page2");
+          } else {
+            // 리셋
+            page = 0;
+            box.classList.remove("open", "page2");
+          }
+        });
+      });
+
+    </script>
+  </section>
+  <section class="book_stage">
+
+    <div class="book">
+      <div class="book_spine"></div>
+
+      <!-- 왼쪽 페이지 -->
+      <div class="page left_page">
+        <p class="page_date">2010.06.15</p>
+        <p class="page_text">
+          작은 질문 하나가<br />
+          세상을 움직이기 시작했다.
+        </p>
+      </div>
+
+      <!-- 오른쪽 페이지 -->
+      <div class="page right_page">
+        <p class="page_date">2011.01.02</p>
+        <p class="page_text">
+          불확실함은<br />
+          언제나 시작의 증거다.
+        </p>
+      </div>
+
+      <!-- 커버 -->
+      <div class="book_cover">
+        <h3>LEUNLAND</h3>
+        <p>기억의 기록</p>
+      </div>
+    </div>
+
+  </section>
+  <script>
+    const book = document.querySelector(".book");
+
+    book.addEventListener("click", () => {
+      book.classList.toggle("open");
+    });
+
+  </script>
+
+  <script src="album.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>상품 상세</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Pretendard, sans-serif;
+      background: #fafafa;
+      color: #333;
+    }
+
+    .product_detail_wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 16px;
+    }
+
+    /* ================= 상단 ================= */
+    .product_top {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 80px;
+    }
+
+    .product_image {
+      width: 50%;
+    }
+
+    .product_image img {
+      width: 100%;
+      border-radius: 16px;
+    }
+
+    .product_order {
+      width: 50%;
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px;
+    }
+
+    .product_name {
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .product_price {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .order_info {
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      padding: 20px 0;
+      margin-bottom: 24px;
+    }
+
+    .order_row {
+      display: flex;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .order_row:last-child { margin-bottom: 0; }
+
+    .order_label {
+      width: 120px;
+      color: #777;
+    }
+
+    /* 수량 */
+    .quantity_box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .qty_btn {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #ddd;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    #quantity {
+      width: 48px;
+      height: 32px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    /* 총 금액 */
+    .total_price {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .total_price strong {
+      font-size: 24px;
+      color: #c77;
+    }
+
+    .order_buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn_cart,
+    .btn_buy {
+      flex: 1;
+      height: 52px;
+      border-radius: 12px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .btn_cart {
+      border: 1px solid #c77;
+      background: #fff;
+      color: #c77;
+    }
+
+    .btn_buy {
+      border: none;
+      background: #c77;
+      color: #fff;
+    }
+
+    /* ================= 하단 탭 ================= */
+    .product_bottom {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px;
+    }
+
+    .tab_menu {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 40px;
+      list-style: none;
+      padding: 0;
+    }
+
+    .tab_menu li {
+      padding: 16px 24px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .tab_menu li.active {
+      font-weight: 600;
+      border-bottom: 2px solid #c77;
+    }
+
+    .tab_content {
+      display: none;
+    }
+
+    .tab_content.active {
+      display: block;
+    }
+
+    .detail_section img {
+      width: 100%;
+      margin-bottom: 24px;
+      border-radius: 12px;
+    }
+
+    .detail_section p {
+      line-height: 1.8;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    /* 반응형 */
+    @media (max-width: 768px) {
+      .product_top {
+        flex-direction: column;
+      }
+
+      .product_image,
+      .product_order {
+        width: 100%;
+      }
+
+      .product_bottom {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="product_detail_wrap">
+
+  <!-- 상단 -->
+  <section class="product_top">
+    <div class="product_image">
+      <img src="https://images.unsplash.com/photo-1542826438-bd32f43d626f" alt="">
+    </div>
+
+    <div class="product_order">
+      <h1 class="product_name">딸기 생크림 케이크</h1>
+      <div class="product_price" id="unit_price" data-price="38000">38,000원</div>
+
+      <div class="order_info">
+        <div class="order_row"><div class="order_label">구매 혜택</div>적립금 2%</div>
+        <div class="order_row"><div class="order_label">배송 방법</div>매장 픽업</div>
+        <div class="order_row"><div class="order_label">배송비</div>무료</div>
+      </div>
+
+      <div class="quantity_box">
+        <button class="qty_btn" data-type="minus">−</button>
+        <input type="text" id="quantity" value="1" readonly>
+        <button class="qty_btn" data-type="plus">+</button>
+      </div>
+
+      <div class="total_price">
+        <span>총 상품 금액</span>
+        <strong id="total_price">38,000원</strong>
+      </div>
+
+      <div class="order_buttons">
+        <button class="btn_cart">장바구니</button>
+        <button class="btn_buy">구매하기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 하단 -->
+  <section class="product_bottom">
+    <ul class="tab_menu">
+      <li class="active" data-tab="detail">상품 상세</li>
+      <li data-tab="guide">구매 안내</li>
+      <li data-tab="review">리뷰</li>
+    </ul>
+
+    <div class="tab_content active" id="detail">
+      <div class="detail_section">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587" alt="">
+        <p>매일 아침 매장에서 직접 만드는 수제 케이크입니다.</p>
+        <p>신선한 재료만 사용하며 당일 섭취를 권장합니다.</p>
+      </div>
+    </div>
+
+    <div class="tab_content" id="guide">
+      <p>픽업 전날 18시까지 주문해주세요.</p>
+      <p>제조 상품 특성상 교환 및 환불은 불가합니다.</p>
+    </div>
+
+    <div class="tab_content" id="review">
+      <p>아직 등록된 리뷰가 없습니다.</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  const unitPrice = Number(document.getElementById('unit_price').dataset.price);
+  const qtyInput = document.getElementById('quantity');
+  const totalPriceEl = document.getElementById('total_price');
+  const qtyBtns = document.querySelectorAll('.qty_btn');
+
+  function updateTotal() {
+    totalPriceEl.textContent =
+      (unitPrice * qtyInput.value).toLocaleString() + '원';
+  }
+
+  qtyBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      let qty = Number(qtyInput.value);
+      btn.dataset.type === 'plus' ? qty++ : qty > 1 && qty--;
+      qtyInput.value = qty;
+      updateTotal();
+    });
+  });
+
+  const tabs = document.querySelectorAll('.tab_menu li');
+  const contents = document.querySelectorAll('.tab_content');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.remove('active'));
+
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>

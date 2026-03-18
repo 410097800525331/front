@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leunland</title>
+  <link rel="ico" href="favicon.svg" />
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/Diary.css">
+</head>
+
+<body>
+  <section class="layout">
+    <!-- Left Sidebar -->
+    <div class="left_sidebar"></div>
+    <!-- Main -->
+    <main class="main">
+      <section class="diary_page">
+        <h2 class="diary_title">📖 Rounland Diary</h2>
+        <!-- 작성 영역 -->
+        <div class="diary_write">
+          <input type="date" class="diary_date" />
+          <input type="text" class="diary_input" placeholder="오늘의 제목" />
+          <textarea class="diary_textarea" placeholder="오늘의 기록을 남겨주세요"></textarea>
+          <button class="diary_btn">기록하기</button>
+        </div>
+
+        <!-- 다이어리 목록 -->
+        <ul class="diary_list"></ul>
+      </section>
+    </main>
+  </section>
+  <div class="player_bar"></div>
+
+  <script>
+    const btn = document.querySelector(".diary_btn");
+    const list = document.querySelector(".diary_list");
+
+    btn.addEventListener("click", () => {
+      const date = document.querySelector(".diary_date").value;
+      const title = document.querySelector(".diary_input").value;
+      const text = document.querySelector(".diary_textarea").value;
+
+      if (!date || !title || !text) return;
+
+      const li = document.createElement("li");
+      li.className = "diary_item";
+
+      li.innerHTML = `
+    <span>${date}</span>
+    <h4>${title}</h4>
+    <p>${text}</p>
+  `;
+
+      list.prepend(li);
+
+      document.querySelector(".diary_input").value = "";
+      document.querySelector(".diary_textarea").value = "";
+    });
+
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/js/include.js"></script>
+  <script src="/js/playerbar.js"></script>
+</body>
+
+</html>

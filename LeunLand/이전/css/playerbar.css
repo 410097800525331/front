@@ -1,0 +1,106 @@
+@charset "utf-8";
+
+.player_bar {
+  position: fixed;
+  bottom: 0; left: 0;
+  display: grid;
+  grid-template-columns: 0.5fr auto 1fr 0.5fr;
+  align-items: center;
+  width: 100%; height: 96px;
+  padding: 0 80px;
+  border-top: 1px solid var(--d2);
+  color: var(--l3);
+  background: #101010;
+  transform: translateY(100%)
+}
+.player_bar.is_open {
+  transform: translateY(0);
+}
+.player_bar {
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.player_bar.hidden {
+  transform: translateY(90px);
+}
+.player_toggle {
+  position: absolute;
+  top: -18px; left: 40px;
+  width: 44px; height: 18px;
+  border-radius: 10px 10px 0 0;
+  background: var(--d1);
+  cursor: pointer;
+}
+.player_toggle::after {
+  content: "";
+  position: absolute;
+  top: 7px; left: 50%;
+  transform: translateX(-50%);
+  width: 18px;  height: 2px;
+  border-radius: 2px;
+  opacity: 0.8;
+  background: var(--l1);
+}
+.player_track {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.player_bar img {
+  width: 50px; height: 50px;
+}
+.player_controls {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.ctrl {
+  font-size: 18px;
+  color: var(--l2);
+  cursor: pointer;
+}
+.ctrl.play {
+  font-size: 22px;
+}
+.player_progress {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+.progress_bg {
+  position: relative;
+  width: 100%; height: 3px;
+  background: var(--d3);
+}
+.player_right {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 10px;
+}
+.volume_icon {
+  width: 20px; height: 20px;
+  stroke: var(--l2);
+}
+.volume_bar {
+  width: 96px; height: 2px;
+  background: var(--l2);
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+.volume_bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--l4);
+}
+.volume_bar::-moz-range-thumb {
+  width: 10px; height: 10px;
+  border: none;
+  border-radius: 50%;
+  background: var(--l4);
+}
+.volume_bar::-moz-range-track {
+  height: 2px;
+  background: var(--l4);
+}

@@ -1,0 +1,102 @@
+@charset "utf-8";
+
+/* 채용안내 */
+.employment {
+  padding: 80px 20px;
+  text-align: center;
+}
+.employment-introduction p {
+  margin: 8px 0 24px;
+}
+.employment-introduction h4 {
+  margin: 24px 0 16px;
+}
+.recruit {
+  text-align: center;
+  padding: 30px;
+  background: var(--mango-0);
+}
+.ch {
+  width: 500px;
+  margin-top: 20px;
+}
+.img {
+  display: block;
+  width: 800px;
+  margin: 20px auto;
+}
+.brand {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 24px;
+  max-width: 1200px;
+  margin: 32px auto 0;
+}
+.brand_card {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.brand_card:hover {
+  transform: translateY(-4px);
+}
+.brand_info {
+  padding: 14px 16px;
+  font-size: 0.9rem;
+  border-top: 1px dashed var(--slate-50);
+}
+/* 소개 */
+.employment_slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.slider {
+  width: 350px;
+  height: 35px;
+  overflow: hidden;
+  background: var(--mango-0);
+  border: 2px solid var(--raspberry-50);
+  margin-left: 8px;
+}
+.slides {
+  height: calc(100% * 4);
+  animation: slideRoll 9s infinite ease-in-out;
+}
+@keyframes slideRoll {
+  0% {
+    transform: translateY(0);
+  }
+  11.11% {
+    transform: translateY(-25%);
+  }
+  33.33% {
+    transform: translateY(-25%);
+  }
+  44.44% {
+    transform: translateY(-50%);
+  }
+  66.66% {
+    transform: translateY(-50%);
+  }
+  77.77% {
+    transform: translateY(-75%);
+  }
+  100% {
+    transform: translateY(-75%);
+  }
+}
+.slider li {
+  display: flex;
+  align-items: center;
+  height: 25%;
+  padding-left: 8px;
+}
+.slider li span {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

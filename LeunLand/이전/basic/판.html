@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music Turntable</title>
+  <link rel="stylesheet" href="turntable.css" />
+  <style>
+    :root {
+      --bg: #e6e6e6;
+      --dark: #1c1c1c;
+      --soft: #bdbdbd;
+      --accent: #8f8f8f;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      font-family: Pretendard, sans-serif;
+      color: var(--dark);
+    }
+
+    .hero_turntable {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .turntable_wrap {
+      position: relative;
+      width: 320px;
+      height: 320px;
+    }
+
+    /* record */
+    .record {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center,
+          #444 0%,
+          #111 35%,
+          #000 70%);
+      box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.08),
+        0 20px 40px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+    }
+
+    .record.spinning {
+      animation: spin 6s linear infinite;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* label */
+    .record_label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 90px;
+      height: 90px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: #dcdcdc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      text-align: center;
+    }
+
+    .label_title {
+      font-weight: 600;
+    }
+
+    .label_artist {
+      opacity: 0.6;
+    }
+
+    /* tone arm */
+    .tone_arm {
+      position: absolute;
+      top: -10px;
+      right: -40px;
+      width: 120px;
+      height: 6px;
+      background: var(--soft);
+      border-radius: 4px;
+      transform-origin: left center;
+      transform: rotate(-30deg);
+      transition: transform 0.6s ease;
+    }
+
+    .tone_arm.active {
+      transform: rotate(-5deg);
+    }
+
+    /* phrase */
+    .hero_phrase {
+      margin-top: 40px;
+      font-size: 0.95rem;
+      color: #555;
+      letter-spacing: 0.02em;
+    }
+
+    /* responsive */
+    @media (max-width: 576px) {
+      .turntable_wrap {
+        width: 260px;
+        height: 260px;
+      }
+    }
+
+    /* groove wrapper */
+    .record_grooves {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 320px;
+      height: 320px;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    /* single groove */
+    .groove {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-sizing: border-box;
+      pointer-events: auto;
+      cursor: pointer;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* hover */
+    .groove:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* playing groove */
+    .groove.active {
+      border-color: rgba(255, 255, 255, 0.45);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+    }
+
+    /* subtle depth */
+    .groove::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="hero_turntable">
+    <div class="turntable_wrap">
+
+      <!-- tone arm -->
+      <div class="tone_arm"></div>
+
+      <!-- record -->
+      <div class="record" id="record">
+        <div class="record_label">
+          <span class="label_title">Today’s Sound</span>
+          <span class="label_artist">sage archive</span>
+        </div>
+      </div>
+
+      <!-- grooves -->
+      <div class="record_grooves" id="grooves"></div>
+
+      <!-- hidden audio -->
+      <audio id="audio" src="assets/audio/sample.mp3"></audio>
+
+    </div>
+  </section>
+
+  <script>
+    const record = document.getElementById('record');
+    const audio = document.getElementById('audio');
+    const toneArm = document.querySelector('.tone_arm');
+
+    let is_playing = false;
+
+    record.addEventListener('click', () => {
+      if (!is_playing) {
+        audio.play();
+        record.classList.add('spinning');
+        toneArm.classList.add('active');
+      } else {
+        audio.pause();
+        record.classList.remove('spinning');
+        toneArm.classList.remove('active');
+      }
+
+      is_playing = !is_playing;
+    });
+    const tracks = [
+      { title: 'Sleep 4ever', src: 'assets/audio/track1.mp3' },
+      { title: 'Dust Memory', src: 'assets/audio/track2.mp3' },
+      { title: 'Grey Afternoon', src: 'assets/audio/track3.mp3' },
+      { title: 'Slow Fade', src: 'assets/audio/track4.mp3' }
+    ];
+
+
+    let current_index = 0;
+
+    // create grooves
+    tracks.forEach((track, idx) => {
+      const groove = document.createElement('div');
+      groove.classList.add('groove');
+
+      // 홈 간격 (바깥 → 안쪽)
+      const gap = 6 * idx;
+      groove.style.transform = `scale(${1 - gap / 200})`;
+
+      groove.addEventListener('click', () => {
+        play_track(idx);
+      });
+
+      grooves.appendChild(groove);
+    });
+
+    function play_track(index) {
+      current_index = index;
+      audio.src = tracks[index].src;
+      audio.play();
+
+      record.classList.add('spinning');
+      set_tone_state('tone_playing');
+
+      update_groove_state();
+    }
+
+    function update_groove_state() {
+      document.querySelectorAll('.groove').forEach((g, i) => {
+        g.classList.toggle('active', i === current_index);
+      });
+    }
+
+    // auto next
+    audio.addEventListener('ended', () => {
+      current_index = (current_index + 1) % tracks.length;
+      play_track(current_index);
+    });
+    const cassette_list = document.getElementById('cassette_list');
+
+    let play_history = [
+      { title: 'Sleep 4ever', count: 6, src: 'assets/audio/track1.mp3' },
+      { title: 'Dust Memory', count: 4, src: 'assets/audio/track2.mp3' },
+      { title: 'Grey Afternoon', count: 3, src: 'assets/audio/track3.mp3' }
+    ];
+
+    function render_cassettes() {
+      cassette_list.innerHTML = '';
+
+      play_history.forEach((track, idx) => {
+        const cassette = document.createElement('div');
+        cassette.classList.add('cassette');
+
+        if (track.count >= 5) {
+          cassette.classList.add('stretched');
+        }
+
+        cassette.innerHTML = `<span>${track.title}</span>`;
+
+        cassette.addEventListener('click', () => {
+          audio.src = track.src;
+          audio.play();
+          record.classList.add('spinning');
+          set_tone_state('tone_playing');
+          set_active_cassette(idx);
+        });
+
+        cassette_list.appendChild(cassette);
+      });
+    }
+
+    function set_active_cassette(index) {
+      document.querySelectorAll('.cassette').forEach((c, i) => {
+        c.classList.toggle('active', i === index);
+      });
+    }
+
+    // 초기 렌더
+    render_cassettes();
+    const radio_text = document.getElementById('radio_text');
+    const radio_status = document.getElementById('radio_status');
+    const volume_dial = document.getElementById('volume_dial');
+
+    let volume = 0.6;
+    audio.volume = volume;
+
+    /* === 상태 동기화 === */
+    function update_radio(track_title) {
+      radio_text.textContent = track_title;
+      radio_status.classList.add('active');
+    }
+
+    function stop_radio() {
+      radio_text.textContent = 'No signal';
+      radio_status.classList.remove('active');
+    }
+
+    /* === 볼륨 다이얼 === */
+    volume_dial.addEventListener('click', () => {
+      volume += 0.2;
+      if (volume > 1) volume = 0;
+      audio.volume = volume;
+
+      volume_dial.style.transform = `rotate(${volume * 270}deg)`;
+    });
+
+    /* === 오디오 이벤트 === */
+    audio.addEventListener('play', () => {
+      radio_status.classList.add('active');
+    });
+
+    audio.addEventListener('pause', () => {
+      radio_status.classList.remove('active');
+    });
+
+    audio.addEventListener('ended', () => {
+      stop_radio();
+    });
+    update_radio(tracks[index].title);
+    function play_track(index) {
+      current_index = index;
+      audio.src = tracks[index].src;
+      audio.play();
+
+      record.classList.add('spinning');
+      set_tone_state('tone_playing');
+      update_groove_state();
+      update_radio(tracks[index].title);
+    }
+
+  </script>
+
+  <script src="turntable.js"></script>
+</body>
+
+</html>

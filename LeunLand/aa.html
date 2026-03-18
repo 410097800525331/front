@@ -1,0 +1,77 @@
+
+  <!-- jQuery & bxSlider JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('.bxslider').bxSlider({
+        auto: true,      // 자동 재생
+        autoControls: true, // 재생/정지 버튼
+        stopAutoOnClick: true,
+        pager: true,     // 하단 점 페이징
+        slideWidth: 800, // 슬라이드 너비
+        mode: 'horizontal',
+        speed: 500,
+        pause: 4000      // 4초마다 넘어감
+      });
+    });
+  </script>
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가로 스크롤 페이지 - 캐로셀</title>
+
+  <!-- bxSlider CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+
+  <style>
+    /* --- 캐로셀 스타일 --- */
+    .carousel-wrapper {
+      width: 800px;
+      /* 요청하신 가로 800px */
+      /* height: 400px;  bxSlider가 이미지 크기에 맞춤, 여기선 이미지 크기로 제어하거나 bx-wrapper 조정 */
+    }
+
+    .bxslider div img {
+      width: 800px;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+      /* 이미지 하단 공백 제거 */
+    }
+
+    /* bxSlider 커스텀 (중앙 정렬 보조) */
+    .bx-wrapper {
+      margin: 0 auto;
+      /* 중앙 정렬 */
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      /* 그림자 효과 추가 */
+      border: none !important;
+      /* 기본 테두리 제거 */
+      background: transparent !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Page 2에 캐로셀 배치 -->
+  <div class="bxslider">
+    <div><img src="https://picsum.photos/id/1018/800/400" alt="Image 1"></div>
+    <div><img src="https://picsum.photos/id/1015/800/400" alt="Image 2"></div>
+    <div><img src="https://picsum.photos/id/1019/800/400" alt="Image 3"></div>
+  </div>
+</body>
+
+</html>

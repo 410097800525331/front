@@ -1,0 +1,210 @@
+@charset "utf-8";
+
+.shop_wrap .btn {
+  width: 120px;
+  padding: 8px 32px;
+  background: var(--mango-50);
+  color: var(--slate-100);
+  margin-top: 16px;
+}
+.null {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 50px 300px;
+  text-align: center;
+  border-radius: 20px;
+  border: 1px solid var(--raspberry-0);
+  color: var(--slate-50);
+}
+.null img {
+  width: 80px;
+}
+.menu_wrap,
+.shop_wrap,
+.event_wrap {
+  display: flex;
+  min-height: 100vh;
+}
+.menu_category,
+.shop_category {
+  position: relative;
+  width: 8%;
+  min-width: 120px;
+}
+.category_inner {
+  position: fixed;
+  z-index: 2;
+}
+.category_list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 60px;
+}
+.category_item {
+  letter-spacing: 0.15em;
+  opacity: 0.5;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.category_item.is_active,
+.category_item.beverage.is_active,
+.category_item.food.is_active,
+.category_item.living.is_active  {
+  opacity: 1;
+  color: var(--slate-100);
+  font-weight: 600;
+}
+.category_item.is_active::after {
+  content: '';
+  display: block;
+  width: 40px; height: 2px;
+  background: var(--raspberry-0);
+}
+.category_item.beverage,
+.category_item.food,
+.category_item.living {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  font-size: 0.85rem;
+  transition: all 0.25s ease;
+  margin-left: 12px;
+  margin-bottom: 2px;
+  letter-spacing: 0.1em;
+  color: var(--slate-50);
+  display: none;
+}
+.category_item.beverage.is_open,
+.category_item.food.is_open,
+.category_item.living.is_open {
+  max-height: 28px;
+  opacity: 1;
+  display: block;
+}
+
+.menu_content,
+.shop_content,
+.event_content {
+  width: 92%;
+}
+.menu_grid,
+.shop_grid,
+.event_grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+.menu_card,
+.shop_card,
+.event_card {
+  text-align: center;
+  background: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 0 30px var(--raspberry-z);
+  cursor: pointer;
+  transition:
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
+}
+.menu_card:hover,
+.shop_card:hover,
+.event_card:hover {
+  box-shadow: 
+    0 10px 30px var(--raspberry-0),
+    inset 0 0 0 1px var(--raspberry-z);
+  filter: brightness(1.03);
+}
+.menu_card img,
+.shop_card img,
+.event_card img {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease;
+}
+.menu_card:hover img,
+.shop_card:hover img,
+.event_card:hover img {
+  transform: scale(0.97);
+  filter: saturate(1.05);
+}
+.event_card img {
+  width: 360px;
+}
+
+
+/* 상세 이미지 모달 */
+.image_modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+}
+.image_modal.is_open {
+  display: block;
+}
+.image_dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+.image_modal_content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 24px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 90vw;
+  max-height: 90vh;
+}
+.image_modal_content img {
+  max-width: 80vw;
+  max-height: 80vh;
+  border-radius: 12px;
+}
+.image_close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+@media(max-width:1024px){
+.menu_wrap,.shop_wrap,.event_wrap{flex-direction:column;}
+.menu_category,.shop_category{width:100%;min-width:auto;position:relative;}
+.category_inner{position:static;}
+.category_list{flex-direction:row;flex-wrap:wrap;gap:16px;margin:24px 0;}
+.menu_content,.shop_content,.event_content{width:100%;}
+.menu_grid,.shop_grid,.event_grid{grid-template-columns:repeat(3,1fr);gap:32px;}
+.menu_card img,.shop_card img{width:100%;height:240px;}
+.event_card img{width:100%;height:260px;}
+.null{padding:40px 120px;}
+}
+@media(max-width:768px){
+.category_list{gap:12px;}
+.category_item{font-size:0.9rem;}
+.category_item.beverage,.category_item.food,.category_item.living{margin-left:0;}
+.menu_grid,.shop_grid,.event_grid{grid-template-columns:repeat(2,1fr);gap:24px;}
+.menu_card img,.shop_card img{height:200px;}
+.event_card img{height:220px;}
+.shop_wrap .btn{width:100%;}
+.null{position:static;transform:none;margin:80px 20px;padding:40px 24px;}
+}
+@media(max-width:576px){
+.category_list{flex-direction:column;align-items:flex-start;}
+.menu_grid,.shop_grid,.event_grid{grid-template-columns:1fr;gap:20px;}
+.menu_card img,.shop_card img,.event_card img{height:auto;}
+.image_modal_content{padding:16px;}
+.image_modal_content img{max-width:90vw;max-height:70vh;}
+}
