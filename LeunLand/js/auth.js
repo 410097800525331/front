@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const id = idInput.value.trim();
     const pw = pwInput.value.trim();
 
-    if (id === "leun" && pw === "123") {
+    if (id === "leun" && pw === "410") {
       window.location.href = "/main/Home.html";
     } else {
       alert("아이디 또는 비밀번호가 달라요!");
